@@ -1,0 +1,26 @@
+[
+  {
+    "date": "2026-04-01",
+    "weighted_cost_per_order": 0.0159,
+    "baseline_weighted_cost": 0.014,
+    "extra_per_order": 0.0019,
+    "daily_extra_total": 165639.83,
+    "total_orders": 88700000
+  },
+  {
+    "date": "2026-04-02",
+    "weighted_cost_per_order": 0.0157,
+    "baseline_weighted_cost": 0.014,
+    "extra_per_order": 0.0017,
+    "daily_extra_total": 150645.51,
+    "total_orders": 88700000
+  },
+  {
+    "date": "2026-04-08",
+    "weighted_cost_per_order": 0.0174,
+    "baseline_weighted_cost": 0.014,
+    "extra_per_order": 0.0034,
+    "daily_extra_total": 302305.39,
+    "total_orders": 88700000
+  }
+]

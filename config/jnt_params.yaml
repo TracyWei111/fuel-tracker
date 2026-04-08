@@ -1,0 +1,46 @@
+# Fuel Tracker Configuration
+# 用户需填入各国实际参数
+
+baseline_date: "2026-02-23"
+
+# 国家列表 - 请填入实际数据
+countries:
+  China:
+    name_cn: "中国"
+    baseline_cost_per_order: 0.003    # TODO: 0.003 ($)
+    daily_orders: 56500000                  # TODO: 填入日单量
+
+  Vietnam:
+    name_cn: "越南"
+    baseline_cost_per_order: 0.0325 # TODO: 填入实际值
+    daily_orders: 6610000                 # TODO: 填入实际值
+
+  Indonesia:
+    name_cn: "印尼"
+    baseline_cost_per_order: 0.0325 # TODO: 填入实际值
+    daily_orders: 10150000                 # TODO: 填入实际值
+
+  Thailand:
+    name_cn: "泰国"
+    baseline_cost_per_order: 0.0325 # TODO: 填入实际值
+    daily_orders: 6300000                 # TODO: 填入实际值
+
+  Malaysia:
+    name_cn: "马来西亚"
+    baseline_cost_per_order: 0.0325 # TODO: 填入实际值
+    daily_orders: 2700000                 # TODO: 填入实际值
+
+  Philippines:
+    name_cn: "菲律宾"
+    baseline_cost_per_order: 0.0325 # TODO: 填入实际值
+    daily_orders: 4920000                 # TODO: 填入实际值
+
+  Mexico:
+    name_cn: "墨西哥"
+    baseline_cost_per_order: 0.050 # TODO: 填入实际值
+    daily_orders: 530000                 # TODO: 填入实际值
+
+  Brazil:
+    name_cn: "巴西"
+    baseline_cost_per_order: 0.050 # TODO: 填入实际值
+    daily_orders: 990000                 # TODO: 填入实际值
