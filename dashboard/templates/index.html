@@ -252,11 +252,12 @@
                         <th>柴油价格 ($/L)</th>
                         <th>涨幅 (相对2/23)</th>
                         <th>每单成本 ($)</th>
+                        <th>每单多付 ($)</th>
                         <th>单量占比</th>
                     </tr>
                 </thead>
                 <tbody id="countriesTable">
-                    <tr><td colspan="5" class="loading">加载中...</td></tr>
+                    <tr><td colspan="6" class="loading">加载中...</td></tr>
                 </tbody>
             </table>
         </div>
@@ -326,7 +327,7 @@
             const tbody = document.getElementById('countriesTable');
 
             if (!countries || countries.length === 0) {
-                tbody.innerHTML = '<tr><td colspan="5" class="loading">暂无数据，请先配置 jnt_params.yaml</td></tr>';
+                tbody.innerHTML = '<tr><td colspan="6" class="loading">暂无数据，请先配置 jnt_params.yaml</td></tr>';
                 return;
             }
 
@@ -335,12 +336,18 @@
                 const changeSign = c.price_change_pct >= 0 ? '+' : '';
                 const weight = c.daily_orders > 0 ? (c.daily_orders / countries.reduce((sum, x) => sum + x.daily_orders, 0) * 100).toFixed(1) : '0.0';
 
+                // 计算每单成本涨幅 = 当前每单成本 - 基准每单成本
+                const costIncrease = c.cost_per_order - (c.baseline_cost_per_order || 0);
+                const costIncreaseClass = costIncrease >= 0 ? 'change-positive' : 'change-negative';
+                const costIncreaseSign = costIncrease >= 0 ? '+' : '';
+
                 return `
                     <tr>
                         <td class="country-name" onclick="highlightCountry('${c.country_key}')">${c.country_cn}</td>
                         <td>$${c.diesel_price.toFixed(2)}</td>
                         <td class="${changeClass}">${changeSign}${c.price_change_pct.toFixed(1)}%</td>
                         <td>$${c.cost_per_order.toFixed(4)}</td>
+                        <td class="${costIncreaseClass}">${costIncreaseSign}$${costIncrease.toFixed(4)}</td>
                         <td>${weight}%</td>
                     </tr>
                 `;
