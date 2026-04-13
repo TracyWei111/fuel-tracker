@@ -1,112 +1,78 @@
 {
-  "last_update": "2026-04-09",
+  "last_update": "2026-04-13T03:00:46.038659",
   "source": "GlobalPetrolPrices.com",
-  "China": {
-    "diesel": [
-      {"date": "2026-02-17", "price": 0.93, "price_local": 6.41, "country_cn": "中国"},
-      {"date": "2026-02-24", "price": 0.96, "price_local": 6.58, "country_cn": "中国"},
-      {"date": "2026-03-03", "price": 0.96, "price_local": 6.58, "country_cn": "中国"},
-      {"date": "2026-03-10", "price": 0.98, "price_local": 6.72, "country_cn": "中国"},
-      {"date": "2026-03-17", "price": 1.06, "price_local": 7.30, "country_cn": "中国"},
-      {"date": "2026-03-24", "price": 1.06, "price_local": 7.30, "country_cn": "中国"},
-      {"date": "2026-03-31", "price": 1.20, "price_local": 8.25, "country_cn": "中国"},
-      {"date": "2026-04-06", "price": 1.20, "price_local": 8.25, "country_cn": "中国"}
-    ],
-    "gasoline": []
-  },
-  "Vietnam": {
-    "diesel": [
-      {"date": "2026-02-10", "price": 0.71, "price_local": 18630, "country_cn": "越南"},
-      {"date": "2026-02-17", "price": 0.71, "price_local": 18705, "country_cn": "越南"},
-      {"date": "2026-02-24", "price": 0.71, "price_local": 18705, "country_cn": "越南"},
-      {"date": "2026-03-03", "price": 0.74, "price_local": 19460, "country_cn": "越南"},
-      {"date": "2026-03-10", "price": 1.18, "price_local": 31015, "country_cn": "越南"},
-      {"date": "2026-03-17", "price": 1.03, "price_local": 27290, "country_cn": "越南"},
-      {"date": "2026-03-24", "price": 1.03, "price_local": 27290, "country_cn": "越南"},
-      {"date": "2026-03-31", "price": 1.36, "price_local": 35790, "country_cn": "越南"},
-      {"date": "2026-04-06", "price": 1.72, "price_local": 45225, "country_cn": "越南"}
-    ],
-    "gasoline": []
-  },
-  "Indonesia": {
-    "diesel": [
-      {"date": "2026-02-10", "price": 0.80, "price_local": 13600, "country_cn": "印尼"},
-      {"date": "2026-02-17", "price": 0.80, "price_local": 13600, "country_cn": "印尼"},
-      {"date": "2026-02-24", "price": 0.80, "price_local": 13600, "country_cn": "印尼"},
-      {"date": "2026-03-03", "price": 0.86, "price_local": 14620, "country_cn": "印尼"},
-      {"date": "2026-03-10", "price": 0.86, "price_local": 14620, "country_cn": "印尼"},
-      {"date": "2026-03-17", "price": 0.86, "price_local": 14620, "country_cn": "印尼"},
-      {"date": "2026-03-24", "price": 0.86, "price_local": 14620, "country_cn": "印尼"},
-      {"date": "2026-03-31", "price": 0.86, "price_local": 14620, "country_cn": "印尼"},
-      {"date": "2026-04-06", "price": 0.86, "price_local": 14620, "country_cn": "印尼"}
-    ],
-    "gasoline": []
-  },
-  "Thailand": {
-    "diesel": [
-      {"date": "2026-02-10", "price": 0.93, "price_local": 30.14, "country_cn": "泰国"},
-      {"date": "2026-02-17", "price": 0.93, "price_local": 30.14, "country_cn": "泰国"},
-      {"date": "2026-02-24", "price": 0.93, "price_local": 30.14, "country_cn": "泰国"},
-      {"date": "2026-03-03", "price": 0.94, "price_local": 30.56, "country_cn": "泰国"},
-      {"date": "2026-03-10", "price": 0.93, "price_local": 30.14, "country_cn": "泰国"},
-      {"date": "2026-03-17", "price": 0.93, "price_local": 30.14, "country_cn": "泰国"},
-      {"date": "2026-03-24", "price": 1.02, "price_local": 32.89, "country_cn": "泰国"},
-      {"date": "2026-03-31", "price": 1.02, "price_local": 32.88, "country_cn": "泰国"},
-      {"date": "2026-04-06", "price": 1.50, "price_local": 48.68, "country_cn": "泰国"}
-    ],
-    "gasoline": []
-  },
-  "Malaysia": {
-    "diesel": [
-      {"date": "2026-02-17", "price": 0.72, "price_local": 2.92, "country_cn": "马来西亚"},
-      {"date": "2026-02-24", "price": 0.74, "price_local": 2.99, "country_cn": "马来西亚"},
-      {"date": "2026-03-03", "price": 0.74, "price_local": 2.99, "country_cn": "马来西亚"},
-      {"date": "2026-03-10", "price": 0.75, "price_local": 3.04, "country_cn": "马来西亚"},
-      {"date": "2026-03-17", "price": 0.77, "price_local": 3.12, "country_cn": "马来西亚"},
-      {"date": "2026-03-24", "price": 0.97, "price_local": 3.92, "country_cn": "马来西亚"},
-      {"date": "2026-03-31", "price": 1.16, "price_local": 4.72, "country_cn": "马来西亚"},
-      {"date": "2026-04-06", "price": 1.49, "price_local": 6.02, "country_cn": "马来西亚"}
-    ],
-    "gasoline": []
-  },
-  "Philippines": {
-    "diesel": [
-      {"date": "2026-02-17", "price": 0.94, "price_local": 56.5, "country_cn": "菲律宾"},
-      {"date": "2026-02-24", "price": 0.94, "price_local": 56.5, "country_cn": "菲律宾"},
-      {"date": "2026-03-03", "price": 1.01, "price_local": 60.79, "country_cn": "菲律宾"},
-      {"date": "2026-03-10", "price": 1.01, "price_local": 60.5, "country_cn": "菲律宾"},
-      {"date": "2026-03-17", "price": 1.37, "price_local": 82.0, "country_cn": "菲律宾"},
-      {"date": "2026-03-24", "price": 1.71, "price_local": 102.6, "country_cn": "菲律宾"},
-      {"date": "2026-03-31", "price": 1.99, "price_local": 119.2, "country_cn": "菲律宾"},
-      {"date": "2026-04-06", "price": 2.15, "price_local": 128.8, "country_cn": "菲律宾"}
-    ],
-    "gasoline": []
-  },
-  "Mexico": {
-    "diesel": [
-      {"date": "2026-02-10", "price": 1.46, "price_local": 26.18, "country_cn": "墨西哥"},
-      {"date": "2026-02-17", "price": 1.46, "price_local": 26.17, "country_cn": "墨西哥"},
-      {"date": "2026-02-24", "price": 1.45, "price_local": 26.14, "country_cn": "墨西哥"},
-      {"date": "2026-03-03", "price": 1.45, "price_local": 26.15, "country_cn": "墨西哥"},
-      {"date": "2026-03-10", "price": 1.54, "price_local": 27.29, "country_cn": "墨西哥"},
-      {"date": "2026-03-17", "price": 1.58, "price_local": 28.00, "country_cn": "墨西哥"},
-      {"date": "2026-03-24", "price": 1.60, "price_local": 28.40, "country_cn": "墨西哥"},
-      {"date": "2026-03-31", "price": 1.61, "price_local": 28.54, "country_cn": "墨西哥"},
-      {"date": "2026-04-06", "price": 1.61, "price_local": 28.54, "country_cn": "墨西哥"}
-    ],
-    "gasoline": []
-  },
-  "Brazil": {
-    "diesel": [
-      {"date": "2026-02-17", "price": 1.17, "price_local": 6.05, "country_cn": "巴西"},
-      {"date": "2026-02-24", "price": 1.17, "price_local": 6.05, "country_cn": "巴西"},
-      {"date": "2026-03-03", "price": 1.18, "price_local": 6.08, "country_cn": "巴西"},
-      {"date": "2026-03-10", "price": 1.20, "price_local": 6.20, "country_cn": "巴西"},
-      {"date": "2026-03-17", "price": 1.25, "price_local": 6.45, "country_cn": "巴西"},
-      {"date": "2026-03-24", "price": 1.31, "price_local": 6.75, "country_cn": "巴西"},
-      {"date": "2026-03-31", "price": 1.38, "price_local": 7.10, "country_cn": "巴西"},
-      {"date": "2026-04-06", "price": 1.44, "price_local": 7.45, "country_cn": "巴西"}
-    ],
-    "gasoline": []
+  "countries": {
+    "China": {
+      "currency": "CNY",
+      "country_cn": "中国",
+      "diesel": {
+        "date": null,
+        "price_usd": 1.2,
+        "price_local": 8.25
+      }
+    },
+    "Vietnam": {
+      "currency": "VND",
+      "country_cn": "越南",
+      "diesel": {
+        "date": null,
+        "price_usd": 1.72,
+        "price_local": 45225.0
+      }
+    },
+    "Indonesia": {
+      "currency": "IDR",
+      "country_cn": "印尼",
+      "diesel": {
+        "date": null,
+        "price_usd": 0.86,
+        "price_local": 14620.0
+      }
+    },
+    "Thailand": {
+      "currency": "THB",
+      "country_cn": "泰国",
+      "diesel": {
+        "date": null,
+        "price_usd": 1.5,
+        "price_local": 48.68
+      }
+    },
+    "Malaysia": {
+      "currency": "MYR",
+      "country_cn": "马来西亚",
+      "diesel": {
+        "date": null,
+        "price_usd": 1.49,
+        "price_local": 6.02
+      }
+    },
+    "Philippines": {
+      "currency": "PHP",
+      "country_cn": "菲律宾",
+      "diesel": {
+        "date": null,
+        "price_usd": 2.15,
+        "price_local": 128.8
+      }
+    },
+    "Mexico": {
+      "currency": "MXN",
+      "country_cn": "墨西哥",
+      "diesel": {
+        "date": null,
+        "price_usd": 1.61,
+        "price_local": 28.54
+      }
+    },
+    "Brazil": {
+      "currency": "BRL",
+      "country_cn": "巴西",
+      "diesel": {
+        "date": null,
+        "price_usd": 1.44,
+        "price_local": 7.45
+      }
+    }
   }
 }
