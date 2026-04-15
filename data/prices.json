@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-04-14T08:48:52.942970",
+  "last_update": "2026-04-15T08:50:18.346509",
   "source": "GlobalPetrolPrices.com",
   "countries": {
     "China": {
@@ -7,8 +7,8 @@
       "country_cn": "中国",
       "diesel": {
         "date": null,
-        "price_usd": 1.2,
-        "price_local": 8.25
+        "price_usd": 1.26,
+        "price_local": 8.59
       }
     },
     "Vietnam": {
@@ -16,8 +16,8 @@
       "country_cn": "越南",
       "diesel": {
         "date": null,
-        "price_usd": 1.72,
-        "price_local": 45225.0
+        "price_usd": 1.26,
+        "price_local": 33285.0
       }
     },
     "Indonesia": {
@@ -25,7 +25,7 @@
       "country_cn": "印尼",
       "diesel": {
         "date": null,
-        "price_usd": 0.86,
+        "price_usd": 0.85,
         "price_local": 14620.0
       }
     },
@@ -34,8 +34,8 @@
       "country_cn": "泰国",
       "diesel": {
         "date": null,
-        "price_usd": 1.5,
-        "price_local": 48.68
+        "price_usd": 1.35,
+        "price_local": 43.15
       }
     },
     "Malaysia": {
@@ -43,8 +43,8 @@
       "country_cn": "马来西亚",
       "diesel": {
         "date": null,
-        "price_usd": 1.49,
-        "price_local": 6.02
+        "price_usd": 1.69,
+        "price_local": 6.72
       }
     },
     "Philippines": {
@@ -52,8 +52,8 @@
       "country_cn": "菲律宾",
       "diesel": {
         "date": null,
-        "price_usd": 2.15,
-        "price_local": 128.8
+        "price_usd": 2.56,
+        "price_local": 153.7
       }
     },
     "Mexico": {
@@ -61,8 +61,8 @@
       "country_cn": "墨西哥",
       "diesel": {
         "date": null,
-        "price_usd": 1.61,
-        "price_local": 28.54
+        "price_usd": 1.64,
+        "price_local": 28.41
       }
     },
     "Brazil": {
@@ -70,8 +70,8 @@
       "country_cn": "巴西",
       "diesel": {
         "date": null,
-        "price_usd": 1.44,
-        "price_local": 7.45
+        "price_usd": 1.48,
+        "price_local": 7.43
       }
     }
   }
