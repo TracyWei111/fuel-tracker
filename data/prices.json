@@ -1,78 +1,94 @@
 {
-  "last_update": "2026-04-16T08:50:37.995468",
+  "last_update": "2026-04-16T13:13:06.016088",
   "source": "GlobalPetrolPrices.com",
   "countries": {
     "China": {
       "currency": "CNY",
       "country_cn": "中国",
-      "diesel": {
-        "date": null,
-        "price_usd": 1.26,
-        "price_local": 8.59
-      }
+      "diesel_history": [
+        {
+          "date": "2026-04-16",
+          "price_usd": 1.26,
+          "price_local": 8.59
+        }
+      ]
     },
     "Vietnam": {
       "currency": "VND",
       "country_cn": "越南",
-      "diesel": {
-        "date": null,
-        "price_usd": 1.26,
-        "price_local": 33285.0
-      }
+      "diesel_history": [
+        {
+          "date": "2026-04-16",
+          "price_usd": 1.26,
+          "price_local": 33285.0
+        }
+      ]
     },
     "Indonesia": {
       "currency": "IDR",
       "country_cn": "印尼",
-      "diesel": {
-        "date": null,
-        "price_usd": 0.85,
-        "price_local": 14620.0
-      }
+      "diesel_history": [
+        {
+          "date": "2026-04-16",
+          "price_usd": 0.85,
+          "price_local": 14620.0
+        }
+      ]
     },
     "Thailand": {
       "currency": "THB",
       "country_cn": "泰国",
-      "diesel": {
-        "date": null,
-        "price_usd": 1.35,
-        "price_local": 43.15
-      }
+      "diesel_history": [
+        {
+          "date": "2026-04-16",
+          "price_usd": 1.35,
+          "price_local": 43.15
+        }
+      ]
     },
     "Malaysia": {
       "currency": "MYR",
       "country_cn": "马来西亚",
-      "diesel": {
-        "date": null,
-        "price_usd": 1.69,
-        "price_local": 6.72
-      }
+      "diesel_history": [
+        {
+          "date": "2026-04-16",
+          "price_usd": 1.69,
+          "price_local": 6.72
+        }
+      ]
     },
     "Philippines": {
       "currency": "PHP",
       "country_cn": "菲律宾",
-      "diesel": {
-        "date": null,
-        "price_usd": 2.56,
-        "price_local": 153.7
-      }
+      "diesel_history": [
+        {
+          "date": "2026-04-16",
+          "price_usd": 2.56,
+          "price_local": 153.7
+        }
+      ]
     },
     "Mexico": {
       "currency": "MXN",
       "country_cn": "墨西哥",
-      "diesel": {
-        "date": null,
-        "price_usd": 1.64,
-        "price_local": 28.41
-      }
+      "diesel_history": [
+        {
+          "date": "2026-04-16",
+          "price_usd": 1.64,
+          "price_local": 28.41
+        }
+      ]
     },
     "Brazil": {
       "currency": "BRL",
       "country_cn": "巴西",
-      "diesel": {
-        "date": null,
-        "price_usd": 1.48,
-        "price_local": 7.43
-      }
+      "diesel_history": [
+        {
+          "date": "2026-04-16",
+          "price_usd": 1.48,
+          "price_local": 7.43
+        }
+      ]
     }
   }
 }
