@@ -33,24 +33,26 @@ def load_prices():
 def get_baseline_and_current_prices(prices_data, country_key, baseline_date_str):
     """从历史数组中获取基准和当前价格"""
     country_data = prices_data.get('countries', {}).get(country_key, {})
-    diesel_history = country_data.get('diesel_history', [])
+    diesel_list = country_data.get('diesel', country_data.get('diesel_history', []))
 
-    if not diesel_history:
+    if not diesel_list:
         return None, None
 
-    # 找基准价格（baseline_date 或最早记录）
+    # 找基准价格（baseline_date 或最接近的早期记录）
     baseline_price = None
-    for record in diesel_history:
-        if record['date'] == baseline_date_str:
-            baseline_price = record['price_usd']
+    for record in diesel_list:
+        if record['date'] >= baseline_date_str:
+            baseline_price = record.get('price', record.get('price_usd'))
             break
 
     if baseline_price is None:
         # 使用最早记录作为基准
-        baseline_price = diesel_history[0]['price_usd']
+        first_record = diesel_list[0]
+        baseline_price = first_record.get('price', first_record.get('price_usd'))
 
     # 当前价格（最后一条记录）
-    current_price = diesel_history[-1]['price_usd']
+    last_record = diesel_list[-1]
+    current_price = last_record.get('price', last_record.get('price_usd'))
 
     return baseline_price, current_price
 

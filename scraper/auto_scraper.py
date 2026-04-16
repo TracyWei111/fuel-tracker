@@ -102,27 +102,28 @@ def main():
             data = scrape_country(page, country_name)
 
             if data and data.get("price_usd"):
-                # 获取现有历史记录
+                # 获取现有历史记录（兼容 diesel 和 diesel_history 格式）
                 country_existing = existing_data.get("countries", {}).get(country_name, {})
-                diesel_history = country_existing.get("diesel_history", [])
+                diesel_list = country_existing.get("diesel", country_existing.get("diesel_history", []))
 
-                # 添加新记录（避免重复日期）
+                # 添加新记录（使用 calculator.py 兼容格式）
                 today = data["date"]
-                existing_dates = [r["date"] for r in diesel_history]
+                existing_dates = [r["date"] for r in diesel_list]
                 if today not in existing_dates:
-                    diesel_history.append({
+                    diesel_list.append({
                         "date": today,
-                        "price_usd": data["price_usd"],
-                        "price_local": data["price_local"]
+                        "price": data["price_usd"],  # 字段名改为 price
+                        "price_local": data["price_local"],
+                        "currency": currency
                     })
 
                 # 按日期排序
-                diesel_history.sort(key=lambda x: x["date"])
+                diesel_list.sort(key=lambda x: x["date"])
 
                 results[country_name] = {
-                    "currency": currency,
+                    "diesel": diesel_list,  # 字段名改为 diesel
                     "country_cn": country_cn,
-                    "diesel_history": diesel_history
+                    "currency": currency
                 }
                 print(f"OK USD {data['price_usd']}")
             else:
