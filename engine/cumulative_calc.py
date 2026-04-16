@@ -3,6 +3,7 @@
 """
 精确计算累计多付金额
 基于实际爬取的价格数据和线性插值
+动态计算到当天
 """
 
 import sys
@@ -29,12 +30,29 @@ def load_prices():
         return json.load(f)
 
 
-def interpolate_price(baseline_price, current_price, days_total, days_elapsed):
-    """线性插值计算某日的价格"""
-    if days_total == 0:
-        return baseline_price
-    ratio = days_elapsed / days_total
-    return baseline_price + (current_price - baseline_price) * ratio
+def get_baseline_and_current_prices(prices_data, country_key, baseline_date_str):
+    """从历史数组中获取基准和当前价格"""
+    country_data = prices_data.get('countries', {}).get(country_key, {})
+    diesel_history = country_data.get('diesel_history', [])
+
+    if not diesel_history:
+        return None, None
+
+    # 找基准价格（baseline_date 或最早记录）
+    baseline_price = None
+    for record in diesel_history:
+        if record['date'] == baseline_date_str:
+            baseline_price = record['price_usd']
+            break
+
+    if baseline_price is None:
+        # 使用最早记录作为基准
+        baseline_price = diesel_history[0]['price_usd']
+
+    # 当前价格（最后一条记录）
+    current_price = diesel_history[-1]['price_usd']
+
+    return baseline_price, current_price
 
 
 def calculate_cumulative_extra():
@@ -42,10 +60,14 @@ def calculate_cumulative_extra():
     config = load_config()
     prices = load_prices()
 
-    # 时间范围
-    baseline_date = datetime(2026, 2, 23)
-    end_date = datetime(2026, 3, 30)
-    days_total = (end_date - baseline_date).days  # 36 天
+    # 时间范围 - 动态计算到今天
+    baseline_date = datetime.strptime(config['baseline_date'], '%Y-%m-%d')
+    end_date = datetime.now().replace(hour=0, minute=0, second=0, microsecond=0)
+    days_total = (end_date - baseline_date).days
+
+    if days_total < 0:
+        print("基准日期未到，无需计算")
+        return 0
 
     print("=" * 70)
     print("精确累计多付计算 (基于线性插值)")
@@ -71,15 +93,19 @@ def calculate_cumulative_extra():
             country_cn = country_config.get('name_cn', country_key)
 
             # 获取价格数据
-            country_prices = prices.get(country_key, {}).get('diesel', [])
-            if len(country_prices) >= 2:
-                base_price = country_prices[0]['price']
-                curr_price = country_prices[-1]['price']
-            else:
+            base_price, curr_price = get_baseline_and_current_prices(
+                prices, country_key, config['baseline_date']
+            )
+
+            if base_price is None or curr_price is None:
                 continue
 
-            # 插值计算当日价格
-            daily_price = interpolate_price(base_price, curr_price, days_total, day)
+            # 插值计算当日价格（线性）
+            if days_total > 0:
+                ratio = day / days_total
+                daily_price = base_price + (curr_price - base_price) * ratio
+            else:
+                daily_price = base_price
 
             # 计算当日每单成本
             if base_price > 0:
@@ -118,7 +144,6 @@ def calculate_cumulative_extra():
     print(f"{'日期':<12} {'当日多付':>15} {'累计多付':>15}")
     print("-" * 70)
 
-    # 每5天输出一次
     for i, record in enumerate(daily_records):
         if i % 5 == 0 or i == len(daily_records) - 1:
             print(f"{record['date']:<12} ${record['daily_extra']:>14,.2f} ${record['cumulative_extra']:>14,.2f}")
@@ -127,18 +152,7 @@ def calculate_cumulative_extra():
     print(f"{'总计':<12} {'':<15} ${cumulative_extra_total:>14,.2f}")
     print("=" * 70)
 
-    # 输出各国明细
-    print("\n各国累计贡献:")
-    print("-" * 70)
-    final_record = daily_records[-1]
-    countries_sorted = sorted(final_record['countries'], key=lambda x: x['extra'], reverse=True)
-    for c in countries_sorted:
-        print(f"  {c['country']}: ${c['extra']:>12,.2f}")
-
-    print()
-    print(f"累计多付总额: ${cumulative_extra_total:,.2f}")
-
-    # 保存到 daily_records.json
+    # 保存到 cumulative_records.json
     output_records = [{
         'date': r['date'],
         'daily_extra_total': r['daily_extra'],
@@ -149,7 +163,7 @@ def calculate_cumulative_extra():
     with open(output_path, 'w', encoding='utf-8') as f:
         json.dump(output_records, f, ensure_ascii=False, indent=2)
 
-    print(f"\n详细记录已保存到: {output_path}")
+    print(f"详细记录已保存到: {output_path}")
 
     return cumulative_extra_total
 
