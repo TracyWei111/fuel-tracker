@@ -3,6 +3,7 @@
 """
 Fuel Price Scraper - 自动抓取柴油价格数据
 配置为每天下午3点运行
+维护历史价格数组，用于累计计算
 """
 
 import json
@@ -37,7 +38,6 @@ def scrape_country(page, country_name: str) -> dict:
         page.wait_for_load_state("networkidle", timeout=15000)
 
         # 提取价格数据
-        # 格式: "The current price of diesel fuel in China is CNY 8.25 per liter or USD 1.20 per liter"
         text = page.inner_text("body")
 
         # 查找 USD 价格
@@ -54,12 +54,8 @@ def scrape_country(page, country_name: str) -> dict:
             currency = None
             local_price = None
 
-        # 查找日期
-        date_match = re.search(r'latest update from (\d{4}-\d{2}-\d{2})', text)
-        date = date_match.group(1) if date_match else None
-
         return {
-            "date": date,
+            "date": datetime.now().strftime("%Y-%m-%d"),
             "price_usd": usd_price,
             "price_local": local_price,
             "currency": currency
@@ -85,6 +81,15 @@ def main():
 
     print(f"[{datetime.now().isoformat()}] 开始抓取柴油价格数据")
 
+    # 读取现有历史数据
+    existing_data = {"last_update": None, "source": "GlobalPetrolPrices.com", "countries": {}}
+    if output_path.exists():
+        try:
+            with open(output_path, 'r', encoding='utf-8') as f:
+                existing_data = json.load(f)
+        except:
+            pass
+
     results = {}
 
     with sync_playwright() as p:
@@ -97,20 +102,35 @@ def main():
             data = scrape_country(page, country_name)
 
             if data and data.get("price_usd"):
+                # 获取现有历史记录
+                country_existing = existing_data.get("countries", {}).get(country_name, {})
+                diesel_history = country_existing.get("diesel_history", [])
+
+                # 添加新记录（避免重复日期）
+                today = data["date"]
+                existing_dates = [r["date"] for r in diesel_history]
+                if today not in existing_dates:
+                    diesel_history.append({
+                        "date": today,
+                        "price_usd": data["price_usd"],
+                        "price_local": data["price_local"]
+                    })
+
+                # 按日期排序
+                diesel_history.sort(key=lambda x: x["date"])
+
                 results[country_name] = {
                     "currency": currency,
                     "country_cn": country_cn,
-                    "diesel": {
-                        "date": data["date"],
-                        "price_usd": data["price_usd"],
-                        "price_local": data["price_local"]
-                    }
+                    "diesel_history": diesel_history
                 }
-                print(f"✓ USD {data['price_usd']}, {currency} {data['price_local']}")
+                print(f"OK USD {data['price_usd']}")
             else:
-                print("✗ 失败")
+                # 保持现有数据
+                if country_name in existing_data.get("countries", {}):
+                    results[country_name] = existing_data["countries"][country_name]
+                print("SKIP 失败")
 
-            # 短暂延迟避免请求过快
             page.wait_for_timeout(500)
 
         browser.close()
@@ -126,10 +146,8 @@ def main():
         with open(output_path, 'w', encoding='utf-8') as f:
             json.dump(output, f, ensure_ascii=False, indent=2)
 
-        print(f"\n数据已保存: {output_path}")
+        print(f"数据已保存: {output_path}")
         print(f"共 {len(results)} 个国家")
-    else:
-        print("\n未能获取任何数据")
 
     # 写入日志
     with open(log_path, 'a', encoding='utf-8') as f:
