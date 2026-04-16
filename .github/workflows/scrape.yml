@@ -24,17 +24,20 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install playwright
+          pip install playwright pyyaml
           playwright install chromium
           playwright install-deps chromium
 
       - name: Run scraper
         run: python scraper/auto_scraper.py
 
+      - name: Run cumulative calculation
+        run: python engine/cumulative_calc.py
+
       - name: Commit and push if changed
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add data/prices.json
+          git add data/prices.json data/cumulative_records.json
           git diff --quiet && git diff --staged --quiet || git commit -m "Update fuel prices - $(date '+%Y-%m-%d')"
           git push
