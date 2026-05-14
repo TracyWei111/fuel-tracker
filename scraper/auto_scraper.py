@@ -29,6 +29,44 @@ COUNTRIES = [
 BASE_URL = "https://www.globalpetrolprices.com"
 
 
+def parse_local_anchors(text: str) -> dict:
+    """
+    Extract the 4-row reference table from the page text:
+      Current price        XX,XXX.XX  -
+      One month ago        XX,XXX.XX  YY.Y %
+      Three months ago     XX,XXX.XX  YY.Y %
+      One year ago         XX,XXX.XX  YY.Y %
+
+    These anchors are real source-of-truth data points exposed for free
+    on every country's page (unlike the 8-week chart which is image-only).
+    Captured per scrape so we can backfill / cross-validate the daily series.
+    """
+    import re
+    anchors = {}
+    lines = text.splitlines()
+    in_local_table = False
+    for line in lines:
+        # Header signals start of the local-currency reference table
+        if re.search(r'Price\s*\([A-Z]{3}/Liter\)\s*Percent change', line):
+            in_local_table = True
+            continue
+        if not in_local_table:
+            continue
+        for label, key in [
+            ("Current price", "current"),
+            ("One month ago", "one_month_ago"),
+            ("Three months ago", "three_months_ago"),
+            ("One year ago", "one_year_ago"),
+        ]:
+            m = re.match(rf'^\s*{re.escape(label)}\s+([\d,]+\.?\d*)', line)
+            if m:
+                anchors[key] = float(m.group(1).replace(',', ''))
+                break
+        if len(anchors) >= 4:
+            break
+    return anchors
+
+
 def scrape_country(page, country_name: str) -> dict:
     """抓取单个国家的价格数据"""
     url = f"{BASE_URL}/{country_name}/diesel_prices/"
@@ -54,11 +92,20 @@ def scrape_country(page, country_name: str) -> dict:
             currency = None
             local_price = None
 
+        # 抓取 4 锚点参考表（current / 1mo ago / 3mo ago / 1yr ago，本地货币）
+        # 失败不影响主流程
+        anchors = {}
+        try:
+            anchors = parse_local_anchors(text)
+        except Exception as e:
+            print(f"  锚点解析失败: {e}")
+
         return {
             "date": datetime.now().strftime("%Y-%m-%d"),
             "price_usd": usd_price,
             "price_local": local_price,
-            "currency": currency
+            "currency": currency,
+            "anchors_local": anchors,  # 4 reference points in local currency
         }
 
     except Exception as e:
@@ -73,6 +120,7 @@ def main():
     data_dir = project_dir / "data"
     data_dir.mkdir(exist_ok=True)
     output_path = data_dir / "prices.json"
+    anchors_path = data_dir / "anchors_history.json"
 
     # 日志目录
     log_dir = project_dir / "logs"
@@ -90,7 +138,17 @@ def main():
         except:
             pass
 
+    # 读取 anchors 历史
+    anchors_history = {"scrapes": []}
+    if anchors_path.exists():
+        try:
+            with open(anchors_path, 'r', encoding='utf-8') as f:
+                anchors_history = json.load(f)
+        except:
+            pass
+
     results = {}
+    today_anchors = {}
 
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=True)
@@ -125,6 +183,11 @@ def main():
                     "country_cn": country_cn,
                     "currency": currency
                 }
+
+                # 收集 4 锚点（如果解析成功）
+                if data.get("anchors_local"):
+                    today_anchors[country_name] = data["anchors_local"]
+
                 print(f"OK USD {data['price_usd']}")
             else:
                 # 保持现有数据
@@ -150,9 +213,28 @@ def main():
         print(f"数据已保存: {output_path}")
         print(f"共 {len(results)} 个国家")
 
+    # 保存 anchors 历史（每天一条记录）
+    if today_anchors:
+        today_str = datetime.now().strftime("%Y-%m-%d")
+        # 同日去重
+        anchors_history["scrapes"] = [
+            s for s in anchors_history.get("scrapes", [])
+            if s.get("scrape_date") != today_str
+        ]
+        anchors_history["scrapes"].append({
+            "scrape_date": today_str,
+            "scrape_iso": datetime.now().isoformat(),
+            "countries": today_anchors,
+        })
+        anchors_history["scrapes"].sort(key=lambda s: s.get("scrape_date", ""))
+        anchors_history["last_update"] = datetime.now().isoformat()
+        with open(anchors_path, 'w', encoding='utf-8') as f:
+            json.dump(anchors_history, f, ensure_ascii=False, indent=2)
+        print(f"锚点历史已保存: {anchors_path} (累计 {len(anchors_history['scrapes'])} 次)")
+
     # 写入日志
     with open(log_path, 'a', encoding='utf-8') as f:
-        f.write(f"[{datetime.now().isoformat()}] 完成，{len(results)} 个国家\n")
+        f.write(f"[{datetime.now().isoformat()}] 完成，{len(results)} 个国家，锚点 {len(today_anchors)} 个\n")
 
 
 if __name__ == "__main__":
