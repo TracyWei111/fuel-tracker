@@ -6,50 +6,50 @@
       "diesel": [
         {
           "date": "2026-02-17",
-          "price": 1.03,
-          "price_local": 7.05,
+          "price": 0.99,
+          "price_local": 6.72,
           "currency": "CNY"
         },
         {
           "date": "2026-02-24",
-          "price": 1.03,
-          "price_local": 7.1,
+          "price": 1.02,
+          "price_local": 6.95,
           "currency": "CNY"
         },
         {
           "date": "2026-03-03",
-          "price": 1.04,
-          "price_local": 7.15,
+          "price": 1.06,
+          "price_local": 7.19,
           "currency": "CNY"
         },
         {
           "date": "2026-03-10",
-          "price": 1.06,
-          "price_local": 7.3,
+          "price": 1.09,
+          "price_local": 7.43,
           "currency": "CNY"
         },
         {
           "date": "2026-03-17",
-          "price": 1.09,
-          "price_local": 7.5,
+          "price": 1.13,
+          "price_local": 7.67,
           "currency": "CNY"
         },
         {
           "date": "2026-03-24",
-          "price": 1.13,
-          "price_local": 7.75,
+          "price": 1.16,
+          "price_local": 7.91,
           "currency": "CNY"
         },
         {
           "date": "2026-03-31",
-          "price": 1.16,
-          "price_local": 8.0,
+          "price": 1.2,
+          "price_local": 8.15,
           "currency": "CNY"
         },
         {
           "date": "2026-04-07",
-          "price": 1.2,
-          "price_local": 8.25,
+          "price": 1.23,
+          "price_local": 8.39,
           "currency": "CNY"
         },
         {
