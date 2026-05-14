@@ -228,50 +228,50 @@
       "diesel": [
         {
           "date": "2026-02-17",
-          "price": 1.03,
-          "price_local": 27000,
+          "price": 0.75,
+          "price_local": 19693.5,
           "currency": "VND"
         },
         {
           "date": "2026-02-24",
-          "price": 1.08,
-          "price_local": 28500,
+          "price": 0.81,
+          "price_local": 21423.3,
           "currency": "VND"
         },
         {
           "date": "2026-03-03",
-          "price": 1.14,
-          "price_local": 30000,
+          "price": 0.88,
+          "price_local": 23153.1,
           "currency": "VND"
         },
         {
           "date": "2026-03-10",
-          "price": 1.2,
-          "price_local": 31500,
+          "price": 0.94,
+          "price_local": 24883.0,
           "currency": "VND"
         },
         {
           "date": "2026-03-17",
-          "price": 1.29,
-          "price_local": 34000,
+          "price": 1.01,
+          "price_local": 26612.8,
           "currency": "VND"
         },
         {
           "date": "2026-03-24",
-          "price": 1.41,
-          "price_local": 37000,
+          "price": 1.07,
+          "price_local": 28342.6,
           "currency": "VND"
         },
         {
           "date": "2026-03-31",
-          "price": 1.56,
-          "price_local": 41000,
+          "price": 1.14,
+          "price_local": 30072.5,
           "currency": "VND"
         },
         {
           "date": "2026-04-07",
-          "price": 1.72,
-          "price_local": 45225,
+          "price": 1.2,
+          "price_local": 31802.3,
           "currency": "VND"
         },
         {
