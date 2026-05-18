@@ -44,9 +44,20 @@ class FuelCostCalculator:
             return yaml.safe_load(f)
 
     def _load_prices(self) -> dict:
-        """加载价格数据"""
+        """加载价格数据，统一返回 {country_key: {...}} 结构。
+
+        auto_scraper.py 当前写出的 prices.json 是嵌套结构
+        ({'countries': {...}, 'last_update': ..., 'source': ...}),
+        而 calculator 的所有 lookup 假设 flat 结构 (prices[country_key]).
+        这里 unwrap 一次，下游代码不变。
+
+        也兼容 legacy flat 结构（如果 raw 顶层就是国家 dict）。
+        """
         with open(self.prices_path, 'r', encoding='utf-8') as f:
-            return json.load(f)
+            raw = json.load(f)
+        if isinstance(raw, dict) and 'countries' in raw and isinstance(raw['countries'], dict):
+            return raw['countries']
+        return raw
 
     def _load_records(self) -> list:
         """加载历史记录"""
