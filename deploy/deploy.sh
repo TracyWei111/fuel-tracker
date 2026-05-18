@@ -78,9 +78,13 @@ sudo systemctl daemon-reload
 sudo systemctl enable fuel-tracker
 sudo systemctl start fuel-tracker
 
-# 8. 配置定时任务（每天下午3点运行）
-echo "配置定时任务..."
-(crontab -l 2>/dev/null; echo "0 15 * * * cd /var/www/fuel-tracker && /var/www/fuel-tracker/venv/bin/python scraper/auto_scraper.py >> /var/www/fuel-tracker/logs/cron.log 2>&1") | crontab -
+# 8. 配置定时任务：从 GitHub 拉取最新数据
+# 数据源是 GitHub Actions（每天 UTC 07:00 / 北京时间 15:00 跑 scraper 并推送）
+# VM 只负责 serve dashboard，每 15 分钟 git pull 一次即可
+echo "配置定时任务（git pull）..."
+mkdir -p /var/www/fuel-tracker/logs
+(crontab -l 2>/dev/null | grep -v 'fuel-tracker'; \
+  echo "*/15 * * * * cd /var/www/fuel-tracker && git fetch origin main >> logs/git-pull.log 2>&1 && git reset --hard origin/main >> logs/git-pull.log 2>&1") | crontab -
 
 # 修复权限
 sudo chown -R www-data:www-data /var/www/fuel-tracker
