@@ -1,5 +1,5 @@
 {
-  "last_update": "2026-07-06T11:41:57.102953",
+  "last_update": "2026-07-07T10:29:41.589214",
   "source": "GlobalPetrolPrices.com",
   "countries": {
     "China": {
@@ -528,6 +528,12 @@
         },
         {
           "date": "2026-07-06",
+          "price": 1.12,
+          "price_local": 7.61,
+          "currency": "CNY"
+        },
+        {
+          "date": "2026-07-07",
           "price": 1.12,
           "price_local": 7.61,
           "currency": "CNY"
@@ -1065,6 +1071,12 @@
           "price": 0.84,
           "price_local": 22075.0,
           "currency": "VND"
+        },
+        {
+          "date": "2026-07-07",
+          "price": 0.84,
+          "price_local": 22075.0,
+          "currency": "VND"
         }
       ],
       "country_cn": "越南",
@@ -1596,6 +1608,12 @@
         },
         {
           "date": "2026-07-06",
+          "price": 1.19,
+          "price_local": 21340.0,
+          "currency": "IDR"
+        },
+        {
+          "date": "2026-07-07",
           "price": 1.19,
           "price_local": 21340.0,
           "currency": "IDR"
@@ -2133,6 +2151,12 @@
           "price": 1.13,
           "price_local": 37.5,
           "currency": "THB"
+        },
+        {
+          "date": "2026-07-07",
+          "price": 1.13,
+          "price_local": 37.5,
+          "currency": "THB"
         }
       ],
       "country_cn": "泰国",
@@ -2664,6 +2688,12 @@
         },
         {
           "date": "2026-07-06",
+          "price": 0.97,
+          "price_local": 3.97,
+          "currency": "MYR"
+        },
+        {
+          "date": "2026-07-07",
           "price": 0.97,
           "price_local": 3.97,
           "currency": "MYR"
@@ -3201,6 +3231,12 @@
           "price": 1.12,
           "price_local": 69.1,
           "currency": "PHP"
+        },
+        {
+          "date": "2026-07-07",
+          "price": 1.12,
+          "price_local": 69.1,
+          "currency": "PHP"
         }
       ],
       "country_cn": "菲律宾",
@@ -3735,6 +3771,12 @@
           "price": 1.54,
           "price_local": 26.95,
           "currency": "MXN"
+        },
+        {
+          "date": "2026-07-07",
+          "price": 1.54,
+          "price_local": 26.95,
+          "currency": "MXN"
         }
       ],
       "country_cn": "墨西哥",
@@ -4266,6 +4308,12 @@
         },
         {
           "date": "2026-07-06",
+          "price": 1.31,
+          "price_local": 6.75,
+          "currency": "BRL"
+        },
+        {
+          "date": "2026-07-07",
           "price": 1.31,
           "price_local": 6.75,
           "currency": "BRL"
