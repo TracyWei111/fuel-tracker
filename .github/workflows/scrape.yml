@@ -34,10 +34,13 @@ jobs:
       - name: Run cumulative calculation
         run: python engine/cumulative_calc.py
 
+      - name: Build HTML report
+        run: python report/build_html_report.py
+
       - name: Commit and push if changed
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add data/prices.json data/cumulative_records.json
+          git add data/prices.json data/cumulative_records.json reports/
           git diff --quiet && git diff --staged --quiet || git commit -m "Update fuel prices - $(date '+%Y-%m-%d')"
           git push

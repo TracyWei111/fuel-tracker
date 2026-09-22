@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>极兔燃油成本追踪</title>
+<style>
+  :root {
+    color-scheme: light;
+    --surface-1:      #fcfcfb;
+    --page-plane:      #f9f9f7;
+    --text-primary:   #0b0b0b;
+    --text-secondary: #52514e;
+    --text-muted:     #898781;
+    --gridline:       #e1e0d9;
+    --axis:           #c3c2b7;
+    --border:         rgba(11,11,11,0.10);
+    --good:           #006300;
+    --bad:            #d03b3b;
+    --seq-1: #cde2fb; --seq-2: #9ec5f4; --seq-3: #5598e7; --seq-4: #2a78d6; --seq-5: #184f95;
+    --cat-1: #2a78d6; --cat-2: #eb6834; --cat-3: #1baf7a; --cat-4: #eda100;
+    --cat-5: #e87ba4; --cat-6: #008300; --cat-7: #4a3aa7; --cat-8: #e34948;
+    --tooltip-bg: #ffffff;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      color-scheme: dark;
+      --surface-1:      #1a1a19;
+      --page-plane:      #0d0d0d;
+      --text-primary:   #ffffff;
+      --text-secondary: #c3c2b7;
+      --text-muted:     #898781;
+      --gridline:       #2c2c2a;
+      --axis:           #383835;
+      --border:         rgba(255,255,255,0.10);
+      --good:           #0ca30c;
+      --bad:            #e66767;
+      --seq-1: #184f95; --seq-2: #1c5cab; --seq-3: #256abf; --seq-4: #3987e5; --seq-5: #86b6ef;
+      --cat-1: #3987e5; --cat-2: #d95926; --cat-3: #199e70; --cat-4: #c98500;
+      --cat-5: #d55181; --cat-6: #008300; --cat-7: #9085e9; --cat-8: #e66767;
+      --tooltip-bg: #242423;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: system-ui, -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: var(--page-plane);
+    color: var(--text-primary);
+  }
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 24px 16px 64px; }
+  header.page-head { padding: 8px 4px 20px; }
+  header.page-head h1 { font-size: 22px; margin: 0 0 6px; }
+  header.page-head p { margin: 0; color: var(--text-secondary); font-size: 13px; line-height: 1.6; }
+  .card {
+    background: var(--surface-1);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 16px;
+  }
+  .kpi-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 16px; }
+  @media (max-width: 760px) { .kpi-row { grid-template-columns: repeat(2, 1fr); } }
+  .stat-tile { background: var(--surface-1); border: 1px solid var(--border); border-radius: 12px; padding: 16px; }
+  .stat-tile .label { font-size: 12px; color: var(--text-secondary); margin-bottom: 8px; }
+  .stat-tile .value { font-size: 22px; font-weight: 600; font-variant-numeric: proportional-nums; }
+  .stat-tile.hero .value { font-size: 30px; }
+  .stat-tile .delta { font-size: 12px; margin-top: 6px; color: var(--text-secondary); }
+  .delta.up { color: var(--bad); }
+  .delta.down { color: var(--good); }
+  .filter-row { display: flex; align-items: center; gap: 8px; margin: 4px 0 16px; }
+  .filter-row .filter-label { font-size: 12px; color: var(--text-muted); margin-right: 4px; }
+  .filter-btn {
+    font-size: 13px; padding: 6px 12px; border-radius: 999px; border: 1px solid var(--border);
+    background: transparent; color: var(--text-secondary); cursor: pointer; font-family: inherit;
+  }
+  .filter-btn.active { background: var(--cat-1); color: #fff; border-color: var(--cat-1); }
+  h2.section-title { font-size: 15px; margin: 0 0 2px; }
+  p.section-sub { font-size: 12px; color: var(--text-muted); margin: 0 0 12px; }
+  .legend { display: flex; flex-wrap: wrap; gap: 12px 18px; margin-top: 10px; }
+  .legend-item { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--text-secondary); }
+  .legend-key { width: 14px; height: 2px; border-radius: 1px; flex: none; }
+  .chart-svg { width: 100%; height: auto; display: block; overflow: visible; }
+  .gridline { stroke: var(--gridline); stroke-width: 1; }
+  .axis-line { stroke: var(--axis); stroke-width: 1; }
+  .axis-label { fill: var(--text-muted); font-size: 10px; }
+  .series-line { fill: none; stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; }
+  .series-area { opacity: 0.10; }
+  .crosshair-line { stroke: var(--axis); stroke-width: 1; stroke-dasharray: 2 3; pointer-events: none; }
+  .crosshair-dot { stroke: var(--surface-1); stroke-width: 2; pointer-events: none; }
+  .hit-layer { fill: transparent; }
+  .tooltip {
+    position: fixed; pointer-events: none; background: var(--tooltip-bg); border: 1px solid var(--border);
+    border-radius: 8px; padding: 8px 10px; font-size: 12px; color: var(--text-primary); box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+    z-index: 50; display: none; min-width: 140px;
+  }
+  .tooltip .t-date { color: var(--text-muted); font-size: 11px; margin-bottom: 4px; }
+  .tooltip .t-row { display: flex; align-items: center; gap: 6px; justify-content: space-between; }
+  .tooltip .t-key { width: 10px; height: 2px; flex: none; }
+  .tooltip .t-name { color: var(--text-secondary); flex: 1; }
+  .tooltip .t-val { font-weight: 600; font-variant-numeric: tabular-nums; }
+  .small-multiples { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+  @media (max-width: 900px) { .small-multiples { grid-template-columns: repeat(2, 1fr); } }
+  .sm-tile { border: 1px solid var(--border); border-radius: 10px; padding: 12px; }
+  .sm-tile .sm-title { font-size: 12px; font-weight: 600; margin-bottom: 2px; }
+  .sm-tile .sm-sub { font-size: 11px; color: var(--text-muted); margin-bottom: 6px; }
+  table.data-table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+  table.data-table th, table.data-table td {
+    text-align: right; padding: 7px 10px; border-bottom: 1px solid var(--gridline); font-variant-numeric: tabular-nums;
+  }
+  table.data-table th:first-child, table.data-table td:first-child { text-align: left; font-variant-numeric: normal; }
+  table.data-table th { color: var(--text-muted); font-weight: 500; font-size: 11.5px; }
+  table.data-table tr:last-child td { border-bottom: none; }
+  .table-scroll { overflow-x: auto; }
+  .caveats { font-size: 12px; color: var(--text-secondary); line-height: 1.8; }
+  .caveats li { margin-bottom: 2px; }
+  footer.page-foot { font-size: 11.5px; color: var(--text-muted); text-align: center; padding: 20px 0 0; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="page-head">
+    <h1>极兔（J&amp;T Express）燃油成本追踪</h1>
+    <p id="meta-line">加载中…</p>
+  </header>
+
+  <div class="kpi-row" id="kpi-row"></div>
+
+  <div class="filter-row">
+    <span class="filter-label">时间范围</span>
+    <button class="filter-btn active" data-range="all">全部</button>
+    <button class="filter-btn" data-range="90">最近 90 天</button>
+    <button class="filter-btn" data-range="30">最近 30 天</button>
+  </div>
+
+  <div class="card">
+    <h2 class="section-title">累计多付总额</h2>
+    <p class="section-sub">基准日至今，实际每单油价成本高于 2 月 23 日基准的累计金额（美元，线性插值口径）</p>
+    <svg class="chart-svg" id="chart-cumulative" viewBox="0 0 1100 340" preserveAspectRatio="xMidYMid meet"></svg>
+  </div>
+
+  <div class="card">
+    <h2 class="section-title">各国柴油价格走势（对基准日指数，基准=100）</h2>
+    <p class="section-sub">高于 100 表示比 2 月 23 日更贵；用于对比各国涨幅快慢，不代表绝对价格水平</p>
+    <svg class="chart-svg" id="chart-indexed" viewBox="0 0 1100 380" preserveAspectRatio="xMidYMid meet"></svg>
+    <div class="legend" id="legend-indexed"></div>
+  </div>
+
+  <div class="card">
+    <h2 class="section-title">各国柴油价格（美元/升）</h2>
+    <p class="section-sub">GlobalPetrolPrices.com 报价按周更新，逐日序列为向前填充</p>
+    <div class="small-multiples" id="small-multiples"></div>
+  </div>
+
+  <div class="card">
+    <h2 class="section-title">各国最新快照</h2>
+    <p class="section-sub" id="snapshot-sub"></p>
+    <div class="table-scroll">
+      <table class="data-table" id="snapshot-table">
+        <thead>
+          <tr>
+            <th>国家</th><th>柴油价 (USD/L)</th><th>本币价</th><th>较基准</th>
+            <th>每单成本估算</th><th>日单量假设</th><th>当日多付估算</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2 class="section-title">口径与已知问题</h2>
+    <ul class="caveats" id="caveats-list"></ul>
+  </div>
+
+  <footer class="page-foot" id="page-foot"></footer>
+</div>
+
+<div class="tooltip" id="tooltip"></div>
+
+<script>
+const DATA = __REPORT_DATA__;
+
+function fmtUSD(v, compact) {
+  if (v === null || v === undefined || isNaN(v)) return '—';
+  const sign = v < 0 ? '-' : '';
+  const abs = Math.abs(v);
+  if (compact) {
+    if (abs >= 1e6) return sign + '$' + (abs/1e6).toFixed(1) + 'M';
+    if (abs >= 1e3) return sign + '$' + (abs/1e3).toFixed(1) + 'K';
+  }
+  return sign + '$' + abs.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+}
+function fmtPct(v) {
+  if (v === null || v === undefined || isNaN(v)) return '—';
+  return (v >= 0 ? '+' : '') + v.toFixed(1) + '%';
+}
+function fmtNum(v) {
+  if (v === null || v === undefined || isNaN(v)) return '—';
+  return v.toLocaleString('en-US');
+}
+function parseDate(d) { return new Date(d + 'T00:00:00Z').getTime(); }
+
+function filterByRange(series, dateKey, rangeDays, refDate) {
+  if (rangeDays === 'all') return series;
+  const ref = parseDate(refDate);
+  const cutoff = ref - rangeDays * 86400000;
+  return series.filter(p => parseDate(p[dateKey]) >= cutoff);
+}
+
+// ---------- generic SVG time-series chart ----------
+function drawChart(svgEl, opts) {
+  const { series, mode, yFormat, width, height, padLeft, padRight, padTop, padBottom, yMinZero } = opts;
+  while (svgEl.firstChild) svgEl.removeChild(svgEl.firstChild);
+  const allPoints = series.flatMap(s => s.values);
+  if (!allPoints.length) return;
+
+  const xs = allPoints.map(p => parseDate(p.date));
+  const xMin = Math.min(...xs), xMax = Math.max(...xs);
+  let yVals = allPoints.map(p => p.value);
+  let yMin = yMinZero ? 0 : Math.min(...yVals);
+  let yMax = Math.max(...yVals);
+  if (yMin === yMax) { yMin -= 1; yMax += 1; }
+  const yPad = (yMax - yMin) * 0.08;
+  if (!yMinZero) yMin -= yPad;
+  yMax += yPad;
+
+  const innerW = width - padLeft - padRight;
+  const innerH = height - padTop - padBottom;
+  const xScale = t => padLeft + (xMax === xMin ? innerW/2 : (t - xMin) / (xMax - xMin) * innerW);
+  const yScale = v => padTop + innerH - (v - yMin) / (yMax - yMin) * innerH;
+
+  const svgNS = 'http://www.w3.org/2000/svg';
+  function el(tag, attrs) {
+    const e = document.createElementNS(svgNS, tag);
+    for (const k in attrs) e.setAttribute(k, attrs[k]);
+    return e;
+  }
+
+  // y gridlines (4 steps)
+  const steps = 4;
+  for (let i = 0; i <= steps; i++) {
+    const v = yMin + (yMax - yMin) * i / steps;
+    const y = yScale(v);
+    svgEl.appendChild(el('line', { x1: padLeft, x2: width - padRight, y1: y, y2: y, class: 'gridline' }));
+    const label = el('text', { x: padLeft - 8, y: y + 3, class: 'axis-label', 'text-anchor': 'end' });
+    label.textContent = yFormat(v);
+    svgEl.appendChild(label);
+  }
+  // x axis baseline
+  svgEl.appendChild(el('line', { x1: padLeft, x2: width - padRight, y1: padTop + innerH, y2: padTop + innerH, class: 'axis-line' }));
+  // x tick labels: first, middle, last date
+  const tickTimes = [xMin, xMin + (xMax - xMin) / 2, xMax];
+  const fmtTick = t => { const d = new Date(t); return `${d.getUTCFullYear()}-${String(d.getUTCMonth()+1).padStart(2,'0')}-${String(d.getUTCDate()).padStart(2,'0')}`; };
+  tickTimes.forEach((t, i) => {
+    const anchor = i === 0 ? 'start' : (i === tickTimes.length - 1 ? 'end' : 'middle');
+    const label = el('text', { x: xScale(t), y: height - 6, class: 'axis-label', 'text-anchor': anchor });
+    label.textContent = fmtTick(t);
+    svgEl.appendChild(label);
+  });
+
+  // series: area (mode 'area', first series only) + lines
+  series.forEach(s => {
+    const pts = s.values.slice().sort((a,b) => parseDate(a.date) - parseDate(b.date));
+    if (!pts.length) return;
+    const linePts = pts.map(p => `${xScale(parseDate(p.date))},${yScale(p.value)}`).join(' ');
+    if (mode === 'area') {
+      const areaPts = `${xScale(parseDate(pts[0].date))},${yScale(yMin)} ${linePts} ${xScale(parseDate(pts[pts.length-1].date))},${yScale(yMin)}`;
+      svgEl.appendChild(el('polygon', { points: areaPts, fill: s.color, class: 'series-area' }));
+    }
+    svgEl.appendChild(el('polyline', { points: linePts, stroke: s.color, class: 'series-line' }));
+  });
+
+  // crosshair + hit layer
+  const crosshair = el('line', { class: 'crosshair-line', y1: padTop, y2: padTop + innerH, x1: 0, x2: 0, opacity: 0 });
+  svgEl.appendChild(crosshair);
+  const dots = series.map(s => {
+    const d = el('circle', { r: 4, fill: s.color, class: 'crosshair-dot', cx: 0, cy: 0, opacity: 0 });
+    svgEl.appendChild(d);
+    return d;
+  });
+  const hit = el('rect', { x: padLeft, y: padTop, width: innerW, height: innerH, class: 'hit-layer' });
+  svgEl.appendChild(hit);
+
+  const tooltip = document.getElementById('tooltip');
+
+  function nearestIndex(pts, t) {
+    let lo = 0, hi = pts.length - 1;
+    if (t <= parseDate(pts[0].date)) return 0;
+    if (t >= parseDate(pts[hi].date)) return hi;
+    while (lo < hi) {
+      const mid = (lo + hi) >> 1;
+      if (parseDate(pts[mid].date) < t) lo = mid + 1; else hi = mid;
+    }
+    const before = pts[Math.max(0, lo - 1)];
+    const after = pts[lo];
+    return Math.abs(parseDate(before.date) - t) < Math.abs(parseDate(after.date) - t) ? pts.indexOf(before) : pts.indexOf(after);
+  }
+
+  function handleMove(evt) {
+    const rect = svgEl.getBoundingClientRect();
+    const scaleX = width / rect.width;
+    const localX = (evt.clientX - rect.left) * scaleX;
+    const t = xMin + (localX - padLeft) / innerW * (xMax - xMin);
+    if (localX < padLeft || localX > width - padRight) { hideAll(); return; }
+
+    const sortedSeries = series.map(s => s.values.slice().sort((a,b) => parseDate(a.date) - parseDate(b.date)));
+    const idx0 = nearestIndex(sortedSeries[0], t);
+    const refDate = sortedSeries[0][idx0].date;
+    const refT = parseDate(refDate);
+    crosshair.setAttribute('x1', xScale(refT));
+    crosshair.setAttribute('x2', xScale(refT));
+    crosshair.setAttribute('opacity', 1);
+
+    let rows = '';
+    series.forEach((s, i) => {
+      const pts = sortedSeries[i];
+      const idx = nearestIndex(pts, refT);
+      const p = pts[idx];
+      dots[i].setAttribute('cx', xScale(parseDate(p.date)));
+      dots[i].setAttribute('cy', yScale(p.value));
+      dots[i].setAttribute('opacity', 1);
+      const nameEsc = document.createElement('span'); nameEsc.textContent = s.label;
+      rows += `<div class="t-row"><span class="t-key" style="background:${s.color}"></span><span class="t-name">${nameEsc.innerHTML}</span><span class="t-val">${yFormat(p.value)}</span></div>`;
+    });
+    tooltip.innerHTML = `<div class="t-date">${refDate}</div>${rows}`;
+    tooltip.style.display = 'block';
+    const tw = tooltip.offsetWidth, th = tooltip.offsetHeight;
+    let left = evt.clientX + 14, top = evt.clientY - th / 2;
+    if (left + tw > window.innerWidth - 8) left = evt.clientX - tw - 14;
+    if (top < 8) top = 8;
+    tooltip.style.left = left + 'px';
+    tooltip.style.top = top + 'px';
+  }
+  function hideAll() {
+    tooltip.style.display = 'none';
+    crosshair.setAttribute('opacity', 0);
+    dots.forEach(d => d.setAttribute('opacity', 0));
+  }
+  hit.addEventListener('pointermove', handleMove);
+  hit.addEventListener('pointerleave', hideAll);
+}
+
+// ---------- render ----------
+const CAT_COLORS = ['--cat-1','--cat-2','--cat-3','--cat-4','--cat-5','--cat-6','--cat-7','--cat-8'];
+function cssVar(name) { return getComputedStyle(document.documentElement).getPropertyValue(name).trim(); }
+
+function renderMeta() {
+  const m = DATA.meta;
+  document.getElementById('meta-line').textContent =
+    `数据源：${m.source}（截至 ${m.prices_last_update.slice(0,10)}，官网按周刷新）· 基准日 ${m.baseline_date} · 累计口径截至 ${m.cumulative_as_of} · 页面生成于 ${m.generated_at}`;
+  document.getElementById('page-foot').textContent =
+    `极兔燃油成本追踪 · 每日经 GitHub Actions 抓取 GlobalPetrolPrices.com，覆盖 8 国柴油价 · 不构成交易建议`;
+}
+
+function renderKPI() {
+  const k = DATA.kpi;
+  const row = document.getElementById('kpi-row');
+  const tiles = [
+    { label: '累计多付总额（基准日至今）', value: fmtUSD(k.cumulative_extra_total, true), hero: true },
+    { label: '当日多付总额', value: fmtUSD(k.daily_extra_total_latest, true) },
+    { label: '全球加权每单成本涨幅', value: fmtPct(k.cumulative_change_pct) },
+    { label: '追踪天数 / 覆盖日单量', value: `${k.days_tracked} 天 / ${fmtNum(k.total_daily_orders)} 单` },
+  ];
+  row.innerHTML = '';
+  tiles.forEach(t => {
+    const div = document.createElement('div');
+    div.className = 'stat-tile' + (t.hero ? ' hero' : '');
+    const label = document.createElement('div'); label.className = 'label'; label.textContent = t.label;
+    const value = document.createElement('div'); value.className = 'value'; value.textContent = t.value;
+    div.appendChild(label); div.appendChild(value);
+    row.appendChild(div);
+  });
+}
+
+let currentRange = 'all';
+
+function renderCumulativeChart() {
+  const raw = DATA.cumulative_series;
+  const ref = DATA.meta.cumulative_as_of;
+  const filtered = filterByRange(raw, 'date', currentRange, ref);
+  const svg = document.getElementById('chart-cumulative');
+  drawChart(svg, {
+    series: [{ key: 'cumulative', label: '累计多付总额', color: cssVar('--seq-4'),
+      values: filtered.map(r => ({ date: r.date, value: r.cumulative })) }],
+    mode: 'area', yFormat: v => fmtUSD(v, true),
+    width: 1100, height: 340, padLeft: 64, padRight: 20, padTop: 16, padBottom: 30, yMinZero: true,
+  });
+}
+
+function renderIndexedChart() {
+  const order = DATA.country_order;
+  const ref = DATA.meta.cumulative_as_of;
+  const series = order.map((key, i) => {
+    const c = DATA.countries[key];
+    const filtered = filterByRange(c.indexed_series, 'date', currentRange, ref);
+    return { key, label: c.name_cn, color: cssVar(CAT_COLORS[i % CAT_COLORS.length]),
+      values: filtered.map(p => ({ date: p.date, value: p.index })) };
+  });
+  const svg = document.getElementById('chart-indexed');
+  drawChart(svg, {
+    series, mode: 'lines', yFormat: v => v.toFixed(0),
+    width: 1100, height: 380, padLeft: 40, padRight: 20, padTop: 16, padBottom: 30, yMinZero: false,
+  });
+  const legend = document.getElementById('legend-indexed');
+  legend.innerHTML = '';
+  series.forEach(s => {
+    const item = document.createElement('div'); item.className = 'legend-item';
+    const key = document.createElement('span'); key.className = 'legend-key'; key.style.background = s.color;
+    const name = document.createElement('span'); name.textContent = s.label;
+    item.appendChild(key); item.appendChild(name);
+    legend.appendChild(item);
+  });
+}
+
+function renderSmallMultiples() {
+  const order = DATA.country_order;
+  const ref = DATA.meta.cumulative_as_of;
+  const wrap = document.getElementById('small-multiples');
+  wrap.innerHTML = '';
+  order.forEach(key => {
+    const c = DATA.countries[key];
+    const tile = document.createElement('div'); tile.className = 'sm-tile';
+    const title = document.createElement('div'); title.className = 'sm-title'; title.textContent = c.name_cn;
+    const sub = document.createElement('div'); sub.className = 'sm-sub';
+    sub.textContent = `最新 $${c.latest_price.toFixed(2)}/L (${c.latest_date})`;
+    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svg.setAttribute('class', 'chart-svg');
+    svg.setAttribute('viewBox', '0 0 260 120');
+    svg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
+    tile.appendChild(title); tile.appendChild(sub); tile.appendChild(svg);
+    wrap.appendChild(tile);
+
+    const filtered = filterByRange(c.series, 'date', currentRange, ref);
+    drawChart(svg, {
+      series: [{ key, label: c.name_cn, color: cssVar('--seq-4'),
+        values: filtered.map(p => ({ date: p.date, value: p.price })) }],
+      mode: 'area', yFormat: v => '$' + v.toFixed(2),
+      width: 260, height: 120, padLeft: 34, padRight: 10, padTop: 10, padBottom: 20, yMinZero: false,
+    });
+  });
+}
+
+function renderTable() {
+  const order = DATA.country_order;
+  const tbody = document.querySelector('#snapshot-table tbody');
+  tbody.innerHTML = '';
+  const placeholderKeys = new Set((DATA.caveats.placeholder_baseline_cost_groups || []).flat());
+  order.forEach(key => {
+    const c = DATA.countries[key];
+    const tr = document.createElement('tr');
+    const flag = placeholderKeys.has(key) ? ' *' : '';
+    tr.innerHTML = `
+      <td>${c.name_cn}</td>
+      <td>$${c.latest_price.toFixed(2)}</td>
+      <td>${c.series[c.series.length-1].price_local} ${c.series[c.series.length-1].currency}</td>
+      <td>${fmtPct(c.pct_change)}</td>
+      <td>$${c.cost_per_order.toFixed(4)}${flag}</td>
+      <td>${fmtNum(c.daily_orders)}</td>
+      <td>${fmtUSD(c.daily_extra_est)}</td>
+    `;
+    tbody.appendChild(tr);
+  });
+  document.getElementById('snapshot-sub').textContent =
+    `截至 ${DATA.meta.cumulative_as_of}；每单成本估算 = 基准每单成本 × 当前/基准柴油价比；带 * 的国家在配置中与其它国家共用同一个占位基准成本，尚待实际数据确认`;
+}
+
+function renderCaveats() {
+  const list = document.getElementById('caveats-list');
+  const items = [];
+  items.push('累计多付总额取自 data/cumulative_records.json（每日由 engine/cumulative_calc.py 重算并入库），而非 data/daily_records.json（该文件自 2026-04-02 起未再更新，此前旧版看板误读了这一份）。');
+  items.push('柴油价格来自 GlobalPetrolPrices.com，官网按周刷新，站点逐日序列在两次刷新之间为向前填充，不代表逐日真实报价变动。');
+  items.push('累计多付按基准价到当前价的线性插值逐日计算，是建模估算，不是逐日实测求和。');
+  const groups = DATA.caveats.placeholder_baseline_cost_groups || [];
+  groups.forEach(g => {
+    const names = g.map(k => DATA.countries[k].name_cn).join('、');
+    items.push(`config/jnt_params.yaml 中 ${names} 的 baseline_cost_per_order 仍是同一个占位值（源文件标注「TODO: 填入实际值」），这几国的每单成本/多付估算精度受限，待实际数据回填。`);
+  });
+  if (DATA.caveats.indonesia_currency_unconfirmed) {
+    items.push('仓库 README 标注：印尼的价格数据换算此前需要人工复核（本地货币换算口径），沿用旧版说明，未在本次生成时重新核对。');
+  }
+  items.push('日单量（daily_orders）为 config/jnt_params.yaml 中的固定假设值，未接入实际订单量数据源，随业务变化需人工更新。');
+  list.innerHTML = '';
+  items.forEach(text => {
+    const li = document.createElement('li'); li.textContent = text; list.appendChild(li);
+  });
+}
+
+function renderAll() {
+  renderCumulativeChart();
+  renderIndexedChart();
+  renderSmallMultiples();
+}
+
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const r = btn.dataset.range;
+    currentRange = r === 'all' ? 'all' : Number(r);
+    renderAll();
+  });
+});
+
+renderMeta();
+renderKPI();
+renderTable();
+renderCaveats();
+renderAll();
+window.addEventListener('resize', renderAll);
+</script>
+</body>
+</html>
