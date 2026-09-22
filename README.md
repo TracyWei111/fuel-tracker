@@ -15,7 +15,17 @@ countries:
     daily_orders: 500000           # 日单量
 ```
 
-### 2. 启动 Dashboard
+### 2. 生成报告
+
+```bash
+python report/build_html_report.py
+```
+
+生成 `reports/latest.html`（同时留一份 `reports/YYYYMMDD.html` 快照），自包含、离线可看的历史报告：
+累计多付总额（读 `data/cumulative_records.json`，不是 `data/daily_records.json`）、8 国柴油价走势折线图、
+指数对比图、逐国快照表。云端每天抓取后由 `.github/workflows/scrape.yml` 自动生成并提交。
+
+### 2b. 启动 Dashboard（本机、非云端）
 
 双击 `run.bat` 或运行：
 
