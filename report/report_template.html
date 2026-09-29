@@ -135,7 +135,7 @@
 
   <div class="card">
     <h2 class="section-title">累计多付总额</h2>
-    <p class="section-sub">基准日至今，实际每单油价成本高于 2 月 23 日基准的累计金额（美元，线性插值口径）</p>
+    <p class="section-sub">基准日至今，实际每单油价成本高于 2 月 23 日基准的累计金额（美元，逐日实价累加）</p>
     <svg class="chart-svg" id="chart-cumulative" viewBox="0 0 1100 340" preserveAspectRatio="xMidYMid meet"></svg>
   </div>
 
@@ -470,7 +470,8 @@ function renderCaveats() {
   const items = [];
   items.push('累计多付总额取自 data/cumulative_records.json（每日由 engine/cumulative_calc.py 重算并入库），而非 data/daily_records.json（该文件自 2026-04-02 起未再更新，此前旧版看板误读了这一份）。');
   items.push('柴油价格来自 GlobalPetrolPrices.com，官网按周刷新，站点逐日序列在两次刷新之间为向前填充，不代表逐日真实报价变动。');
-  items.push('累计多付按基准价到当前价的线性插值逐日计算，是建模估算，不是逐日实测求和。');
+  items.push('累计多付按「当天实际挂出的价格」逐日累加：每天取当日或之前最近一次抓到的报价，两次报价之间沿用上一次的价。已经过去的日子不会因为之后的价格变动被改写。');
+  items.push('2026-09-29 之前用的是「基准价到当前价线性插值」口径，当前价一变整段历史跟着重算，且低估了早期涨价（例如 2026-04-23 菲律宾实际挂牌 $2.05/L，旧口径假设为 $1.12/L）。换口径后同一天的累计值会高于旧口径，两者不可直接比较。');
   const groups = DATA.caveats.placeholder_baseline_cost_groups || [];
   groups.forEach(g => {
     const names = g.map(k => DATA.countries[k].name_cn).join('、');

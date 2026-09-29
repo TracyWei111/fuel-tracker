@@ -6,1087 +6,1092 @@
   },
   {
     "date": "2026-02-24",
-    "daily_extra_total": 2711.42,
-    "cumulative_extra_total": 2711.42
+    "daily_extra_total": 0.0,
+    "cumulative_extra_total": 0.0
   },
   {
     "date": "2026-02-25",
-    "daily_extra_total": 5422.83,
-    "cumulative_extra_total": 8134.25
+    "daily_extra_total": 0.0,
+    "cumulative_extra_total": 0.0
   },
   {
     "date": "2026-02-26",
-    "daily_extra_total": 8134.25,
-    "cumulative_extra_total": 16268.5
+    "daily_extra_total": 0.0,
+    "cumulative_extra_total": 0.0
   },
   {
     "date": "2026-02-27",
-    "daily_extra_total": 10845.67,
-    "cumulative_extra_total": 27114.16
+    "daily_extra_total": 0.0,
+    "cumulative_extra_total": 0.0
   },
   {
     "date": "2026-02-28",
-    "daily_extra_total": 13557.08,
-    "cumulative_extra_total": 40671.24
+    "daily_extra_total": 0.0,
+    "cumulative_extra_total": 0.0
   },
   {
     "date": "2026-03-01",
-    "daily_extra_total": 16268.5,
-    "cumulative_extra_total": 56939.74
+    "daily_extra_total": 0.0,
+    "cumulative_extra_total": 0.0
   },
   {
     "date": "2026-03-02",
-    "daily_extra_total": 18979.91,
-    "cumulative_extra_total": 75919.66
+    "daily_extra_total": 0.0,
+    "cumulative_extra_total": 0.0
   },
   {
     "date": "2026-03-03",
-    "daily_extra_total": 21691.33,
-    "cumulative_extra_total": 97610.99
+    "daily_extra_total": 33045.65,
+    "cumulative_extra_total": 33045.65
   },
   {
     "date": "2026-03-04",
-    "daily_extra_total": 24402.75,
-    "cumulative_extra_total": 122013.73
+    "daily_extra_total": 33045.65,
+    "cumulative_extra_total": 66091.31
   },
   {
     "date": "2026-03-05",
-    "daily_extra_total": 27114.16,
-    "cumulative_extra_total": 149127.9
+    "daily_extra_total": 33045.65,
+    "cumulative_extra_total": 99136.96
   },
   {
     "date": "2026-03-06",
-    "daily_extra_total": 29825.58,
-    "cumulative_extra_total": 178953.48
+    "daily_extra_total": 33045.65,
+    "cumulative_extra_total": 132182.62
   },
   {
     "date": "2026-03-07",
-    "daily_extra_total": 32537.0,
-    "cumulative_extra_total": 211490.47
+    "daily_extra_total": 33045.65,
+    "cumulative_extra_total": 165228.27
   },
   {
     "date": "2026-03-08",
-    "daily_extra_total": 35248.41,
-    "cumulative_extra_total": 246738.88
+    "daily_extra_total": 33045.65,
+    "cumulative_extra_total": 198273.92
   },
   {
     "date": "2026-03-09",
-    "daily_extra_total": 37959.83,
-    "cumulative_extra_total": 284698.71
+    "daily_extra_total": 33045.65,
+    "cumulative_extra_total": 231319.58
   },
   {
     "date": "2026-03-10",
-    "daily_extra_total": 40671.24,
-    "cumulative_extra_total": 325369.96
+    "daily_extra_total": 108349.11,
+    "cumulative_extra_total": 339668.68
   },
   {
     "date": "2026-03-11",
-    "daily_extra_total": 43382.66,
-    "cumulative_extra_total": 368752.62
+    "daily_extra_total": 108349.11,
+    "cumulative_extra_total": 448017.79
   },
   {
     "date": "2026-03-12",
-    "daily_extra_total": 46094.08,
-    "cumulative_extra_total": 414846.7
+    "daily_extra_total": 108349.11,
+    "cumulative_extra_total": 556366.9
   },
   {
     "date": "2026-03-13",
-    "daily_extra_total": 48805.49,
-    "cumulative_extra_total": 463652.19
+    "daily_extra_total": 108349.11,
+    "cumulative_extra_total": 664716.0
   },
   {
     "date": "2026-03-14",
-    "daily_extra_total": 51516.91,
-    "cumulative_extra_total": 515169.1
+    "daily_extra_total": 108349.11,
+    "cumulative_extra_total": 773065.11
   },
   {
     "date": "2026-03-15",
-    "daily_extra_total": 54228.33,
-    "cumulative_extra_total": 569397.42
+    "daily_extra_total": 108349.11,
+    "cumulative_extra_total": 881414.22
   },
   {
     "date": "2026-03-16",
-    "daily_extra_total": 56939.74,
-    "cumulative_extra_total": 626337.17
+    "daily_extra_total": 108349.11,
+    "cumulative_extra_total": 989763.32
   },
   {
     "date": "2026-03-17",
-    "daily_extra_total": 59651.16,
-    "cumulative_extra_total": 685988.33
+    "daily_extra_total": 195389.73,
+    "cumulative_extra_total": 1185153.05
   },
   {
     "date": "2026-03-18",
-    "daily_extra_total": 62362.58,
-    "cumulative_extra_total": 748350.9
+    "daily_extra_total": 195389.73,
+    "cumulative_extra_total": 1380542.78
   },
   {
     "date": "2026-03-19",
-    "daily_extra_total": 65073.99,
-    "cumulative_extra_total": 813424.89
+    "daily_extra_total": 195389.73,
+    "cumulative_extra_total": 1575932.52
   },
   {
     "date": "2026-03-20",
-    "daily_extra_total": 67785.41,
-    "cumulative_extra_total": 881210.3
+    "daily_extra_total": 195389.73,
+    "cumulative_extra_total": 1771322.25
   },
   {
     "date": "2026-03-21",
-    "daily_extra_total": 70496.82,
-    "cumulative_extra_total": 951707.12
+    "daily_extra_total": 195389.73,
+    "cumulative_extra_total": 1966711.98
   },
   {
     "date": "2026-03-22",
-    "daily_extra_total": 73208.24,
-    "cumulative_extra_total": 1024915.36
+    "daily_extra_total": 195389.73,
+    "cumulative_extra_total": 2162101.71
   },
   {
     "date": "2026-03-23",
-    "daily_extra_total": 75919.66,
-    "cumulative_extra_total": 1100835.02
+    "daily_extra_total": 195389.73,
+    "cumulative_extra_total": 2357491.44
   },
   {
     "date": "2026-03-24",
-    "daily_extra_total": 78631.07,
-    "cumulative_extra_total": 1179466.09
+    "daily_extra_total": 307032.45,
+    "cumulative_extra_total": 2664523.9
   },
   {
     "date": "2026-03-25",
-    "daily_extra_total": 81342.49,
-    "cumulative_extra_total": 1260808.58
+    "daily_extra_total": 307032.45,
+    "cumulative_extra_total": 2971556.35
   },
   {
     "date": "2026-03-26",
-    "daily_extra_total": 84053.91,
-    "cumulative_extra_total": 1344862.49
+    "daily_extra_total": 307032.45,
+    "cumulative_extra_total": 3278588.8
   },
   {
     "date": "2026-03-27",
-    "daily_extra_total": 86765.32,
-    "cumulative_extra_total": 1431627.81
+    "daily_extra_total": 307032.45,
+    "cumulative_extra_total": 3585621.26
   },
   {
     "date": "2026-03-28",
-    "daily_extra_total": 89476.74,
-    "cumulative_extra_total": 1521104.55
+    "daily_extra_total": 307032.45,
+    "cumulative_extra_total": 3892653.71
   },
   {
     "date": "2026-03-29",
-    "daily_extra_total": 92188.15,
-    "cumulative_extra_total": 1613292.7
+    "daily_extra_total": 307032.45,
+    "cumulative_extra_total": 4199686.16
   },
   {
     "date": "2026-03-30",
-    "daily_extra_total": 94899.57,
-    "cumulative_extra_total": 1708192.27
+    "daily_extra_total": 307032.45,
+    "cumulative_extra_total": 4506718.62
   },
   {
     "date": "2026-03-31",
-    "daily_extra_total": 97610.99,
-    "cumulative_extra_total": 1805803.26
+    "daily_extra_total": 447318.48,
+    "cumulative_extra_total": 4954037.1
   },
   {
     "date": "2026-04-01",
-    "daily_extra_total": 100322.4,
-    "cumulative_extra_total": 1906125.66
+    "daily_extra_total": 447318.48,
+    "cumulative_extra_total": 5401355.59
   },
   {
     "date": "2026-04-02",
-    "daily_extra_total": 103033.82,
-    "cumulative_extra_total": 2009159.48
+    "daily_extra_total": 447318.48,
+    "cumulative_extra_total": 5848674.07
   },
   {
     "date": "2026-04-03",
-    "daily_extra_total": 105745.24,
-    "cumulative_extra_total": 2114904.72
+    "daily_extra_total": 447318.48,
+    "cumulative_extra_total": 6295992.55
   },
   {
     "date": "2026-04-04",
-    "daily_extra_total": 108456.65,
-    "cumulative_extra_total": 2223361.37
+    "daily_extra_total": 447318.48,
+    "cumulative_extra_total": 6743311.04
   },
   {
     "date": "2026-04-05",
-    "daily_extra_total": 111168.07,
-    "cumulative_extra_total": 2334529.44
+    "daily_extra_total": 447318.48,
+    "cumulative_extra_total": 7190629.52
   },
   {
     "date": "2026-04-06",
-    "daily_extra_total": 113879.48,
-    "cumulative_extra_total": 2448408.93
+    "daily_extra_total": 447318.48,
+    "cumulative_extra_total": 7637948.01
   },
   {
     "date": "2026-04-07",
-    "daily_extra_total": 116590.9,
-    "cumulative_extra_total": 2564999.83
+    "daily_extra_total": 570573.78,
+    "cumulative_extra_total": 8208521.79
   },
   {
     "date": "2026-04-08",
-    "daily_extra_total": 119302.32,
-    "cumulative_extra_total": 2684302.14
+    "daily_extra_total": 570573.78,
+    "cumulative_extra_total": 8779095.57
   },
   {
     "date": "2026-04-09",
-    "daily_extra_total": 122013.73,
-    "cumulative_extra_total": 2806315.88
+    "daily_extra_total": 570573.78,
+    "cumulative_extra_total": 9349669.35
   },
   {
     "date": "2026-04-10",
-    "daily_extra_total": 124725.15,
-    "cumulative_extra_total": 2931041.03
+    "daily_extra_total": 570573.78,
+    "cumulative_extra_total": 9920243.13
   },
   {
     "date": "2026-04-11",
-    "daily_extra_total": 127436.57,
-    "cumulative_extra_total": 3058477.6
+    "daily_extra_total": 570573.78,
+    "cumulative_extra_total": 10490816.91
   },
   {
     "date": "2026-04-12",
-    "daily_extra_total": 130147.98,
-    "cumulative_extra_total": 3188625.58
+    "daily_extra_total": 570573.78,
+    "cumulative_extra_total": 11061390.69
   },
   {
     "date": "2026-04-13",
-    "daily_extra_total": 132859.4,
-    "cumulative_extra_total": 3321484.98
+    "daily_extra_total": 570573.78,
+    "cumulative_extra_total": 11631964.48
   },
   {
     "date": "2026-04-14",
-    "daily_extra_total": 135570.82,
-    "cumulative_extra_total": 3457055.79
+    "daily_extra_total": 570573.78,
+    "cumulative_extra_total": 12202538.26
   },
   {
     "date": "2026-04-15",
-    "daily_extra_total": 138282.23,
-    "cumulative_extra_total": 3595338.02
+    "daily_extra_total": 570573.78,
+    "cumulative_extra_total": 12773112.04
   },
   {
     "date": "2026-04-16",
-    "daily_extra_total": 140993.65,
-    "cumulative_extra_total": 3736331.67
+    "daily_extra_total": 646940.72,
+    "cumulative_extra_total": 13420052.75
   },
   {
     "date": "2026-04-17",
-    "daily_extra_total": 143705.06,
-    "cumulative_extra_total": 3880036.74
+    "daily_extra_total": 646940.72,
+    "cumulative_extra_total": 14066993.47
   },
   {
     "date": "2026-04-18",
-    "daily_extra_total": 146416.48,
-    "cumulative_extra_total": 4026453.22
+    "daily_extra_total": 646940.72,
+    "cumulative_extra_total": 14713934.18
   },
   {
     "date": "2026-04-19",
-    "daily_extra_total": 149127.9,
-    "cumulative_extra_total": 4175581.11
+    "daily_extra_total": 646940.72,
+    "cumulative_extra_total": 15360874.9
   },
   {
     "date": "2026-04-20",
-    "daily_extra_total": 151839.31,
-    "cumulative_extra_total": 4327420.43
+    "daily_extra_total": 646940.72,
+    "cumulative_extra_total": 16007815.61
   },
   {
     "date": "2026-04-21",
-    "daily_extra_total": 154550.73,
-    "cumulative_extra_total": 4481971.16
+    "daily_extra_total": 646940.72,
+    "cumulative_extra_total": 16654756.33
   },
   {
     "date": "2026-04-22",
-    "daily_extra_total": 157262.15,
-    "cumulative_extra_total": 4639233.3
+    "daily_extra_total": 474488.0,
+    "cumulative_extra_total": 17129244.33
   },
   {
     "date": "2026-04-23",
-    "daily_extra_total": 159973.56,
-    "cumulative_extra_total": 4799206.87
+    "daily_extra_total": 474488.0,
+    "cumulative_extra_total": 17603732.33
   },
   {
     "date": "2026-04-24",
-    "daily_extra_total": 162684.98,
-    "cumulative_extra_total": 4961891.84
+    "daily_extra_total": 474488.0,
+    "cumulative_extra_total": 18078220.33
   },
   {
     "date": "2026-04-25",
-    "daily_extra_total": 165396.39,
-    "cumulative_extra_total": 5127288.24
+    "daily_extra_total": 474488.0,
+    "cumulative_extra_total": 18552708.33
   },
   {
     "date": "2026-04-26",
-    "daily_extra_total": 168107.81,
-    "cumulative_extra_total": 5295396.05
+    "daily_extra_total": 474488.0,
+    "cumulative_extra_total": 19027196.33
   },
   {
     "date": "2026-04-27",
-    "daily_extra_total": 170819.23,
-    "cumulative_extra_total": 5466215.28
+    "daily_extra_total": 474488.0,
+    "cumulative_extra_total": 19501684.34
   },
   {
     "date": "2026-04-28",
-    "daily_extra_total": 173530.64,
-    "cumulative_extra_total": 5639745.92
+    "daily_extra_total": 474488.0,
+    "cumulative_extra_total": 19976172.34
   },
   {
     "date": "2026-04-29",
-    "daily_extra_total": 176242.06,
-    "cumulative_extra_total": 5815987.98
+    "daily_extra_total": 340398.26,
+    "cumulative_extra_total": 20316570.6
   },
   {
     "date": "2026-04-30",
-    "daily_extra_total": 178953.48,
-    "cumulative_extra_total": 5994941.46
+    "daily_extra_total": 340398.26,
+    "cumulative_extra_total": 20656968.86
   },
   {
     "date": "2026-05-01",
-    "daily_extra_total": 181664.89,
-    "cumulative_extra_total": 6176606.35
+    "daily_extra_total": 340398.26,
+    "cumulative_extra_total": 20997367.13
   },
   {
     "date": "2026-05-02",
-    "daily_extra_total": 184376.31,
-    "cumulative_extra_total": 6360982.66
+    "daily_extra_total": 340398.26,
+    "cumulative_extra_total": 21337765.39
   },
   {
     "date": "2026-05-03",
-    "daily_extra_total": 187087.73,
-    "cumulative_extra_total": 6548070.38
+    "daily_extra_total": 340398.26,
+    "cumulative_extra_total": 21678163.66
   },
   {
     "date": "2026-05-04",
-    "daily_extra_total": 189799.14,
-    "cumulative_extra_total": 6737869.53
+    "daily_extra_total": 340398.26,
+    "cumulative_extra_total": 22018561.92
   },
   {
     "date": "2026-05-05",
-    "daily_extra_total": 192510.56,
-    "cumulative_extra_total": 6930380.08
+    "daily_extra_total": 340398.26,
+    "cumulative_extra_total": 22358960.19
   },
   {
     "date": "2026-05-06",
-    "daily_extra_total": 195221.97,
-    "cumulative_extra_total": 7125602.06
+    "daily_extra_total": 318851.6,
+    "cumulative_extra_total": 22677811.78
   },
   {
     "date": "2026-05-07",
-    "daily_extra_total": 197933.39,
-    "cumulative_extra_total": 7323535.45
+    "daily_extra_total": 318851.6,
+    "cumulative_extra_total": 22996663.38
   },
   {
     "date": "2026-05-08",
-    "daily_extra_total": 200644.81,
-    "cumulative_extra_total": 7524180.25
+    "daily_extra_total": 318851.6,
+    "cumulative_extra_total": 23315514.98
   },
   {
     "date": "2026-05-09",
-    "daily_extra_total": 203356.22,
-    "cumulative_extra_total": 7727536.48
+    "daily_extra_total": 318851.6,
+    "cumulative_extra_total": 23634366.58
   },
   {
     "date": "2026-05-10",
-    "daily_extra_total": 206067.64,
-    "cumulative_extra_total": 7933604.12
+    "daily_extra_total": 318851.6,
+    "cumulative_extra_total": 23953218.18
   },
   {
     "date": "2026-05-11",
-    "daily_extra_total": 208779.06,
-    "cumulative_extra_total": 8142383.17
+    "daily_extra_total": 318851.6,
+    "cumulative_extra_total": 24272069.78
   },
   {
     "date": "2026-05-12",
-    "daily_extra_total": 211490.47,
-    "cumulative_extra_total": 8353873.64
+    "daily_extra_total": 318851.6,
+    "cumulative_extra_total": 24590921.38
   },
   {
     "date": "2026-05-13",
-    "daily_extra_total": 214201.89,
-    "cumulative_extra_total": 8568075.53
+    "daily_extra_total": 583346.4,
+    "cumulative_extra_total": 25174267.77
   },
   {
     "date": "2026-05-14",
-    "daily_extra_total": 216913.3,
-    "cumulative_extra_total": 8784988.84
+    "daily_extra_total": 583346.4,
+    "cumulative_extra_total": 25757614.17
   },
   {
     "date": "2026-05-15",
-    "daily_extra_total": 219624.72,
-    "cumulative_extra_total": 9004613.56
+    "daily_extra_total": 583346.4,
+    "cumulative_extra_total": 26340960.57
   },
   {
     "date": "2026-05-16",
-    "daily_extra_total": 222336.14,
-    "cumulative_extra_total": 9226949.7
+    "daily_extra_total": 583346.4,
+    "cumulative_extra_total": 26924306.96
   },
   {
     "date": "2026-05-17",
-    "daily_extra_total": 225047.55,
-    "cumulative_extra_total": 9451997.25
+    "daily_extra_total": 583346.4,
+    "cumulative_extra_total": 27507653.36
   },
   {
     "date": "2026-05-18",
-    "daily_extra_total": 227758.97,
-    "cumulative_extra_total": 9679756.22
+    "daily_extra_total": 583346.4,
+    "cumulative_extra_total": 28090999.76
   },
   {
     "date": "2026-05-19",
-    "daily_extra_total": 230470.39,
-    "cumulative_extra_total": 9910226.61
+    "daily_extra_total": 583346.4,
+    "cumulative_extra_total": 28674346.15
   },
   {
     "date": "2026-05-20",
-    "daily_extra_total": 233181.8,
-    "cumulative_extra_total": 10143408.41
+    "daily_extra_total": 545368.97,
+    "cumulative_extra_total": 29219715.12
   },
   {
     "date": "2026-05-21",
-    "daily_extra_total": 235893.22,
-    "cumulative_extra_total": 10379301.63
+    "daily_extra_total": 545368.97,
+    "cumulative_extra_total": 29765084.09
   },
   {
     "date": "2026-05-22",
-    "daily_extra_total": 238604.64,
-    "cumulative_extra_total": 10617906.26
+    "daily_extra_total": 545368.97,
+    "cumulative_extra_total": 30310453.05
   },
   {
     "date": "2026-05-23",
-    "daily_extra_total": 241316.05,
-    "cumulative_extra_total": 10859222.31
+    "daily_extra_total": 545368.97,
+    "cumulative_extra_total": 30855822.02
   },
   {
     "date": "2026-05-24",
-    "daily_extra_total": 244027.47,
-    "cumulative_extra_total": 11103249.78
+    "daily_extra_total": 545368.97,
+    "cumulative_extra_total": 31401190.99
   },
   {
     "date": "2026-05-25",
-    "daily_extra_total": 246738.88,
-    "cumulative_extra_total": 11349988.67
+    "daily_extra_total": 545368.97,
+    "cumulative_extra_total": 31946559.96
   },
   {
     "date": "2026-05-26",
-    "daily_extra_total": 249450.3,
-    "cumulative_extra_total": 11599438.97
+    "daily_extra_total": 545368.97,
+    "cumulative_extra_total": 32491928.93
   },
   {
     "date": "2026-05-27",
-    "daily_extra_total": 252161.72,
-    "cumulative_extra_total": 11851600.68
+    "daily_extra_total": 565821.42,
+    "cumulative_extra_total": 33057750.34
   },
   {
     "date": "2026-05-28",
-    "daily_extra_total": 254873.13,
-    "cumulative_extra_total": 12106473.81
+    "daily_extra_total": 565821.42,
+    "cumulative_extra_total": 33623571.76
   },
   {
     "date": "2026-05-29",
-    "daily_extra_total": 257584.55,
-    "cumulative_extra_total": 12364058.36
+    "daily_extra_total": 565821.42,
+    "cumulative_extra_total": 34189393.17
   },
   {
     "date": "2026-05-30",
-    "daily_extra_total": 260295.97,
-    "cumulative_extra_total": 12624354.33
+    "daily_extra_total": 565821.42,
+    "cumulative_extra_total": 34755214.59
   },
   {
     "date": "2026-05-31",
-    "daily_extra_total": 263007.38,
-    "cumulative_extra_total": 12887361.71
+    "daily_extra_total": 565821.42,
+    "cumulative_extra_total": 35321036.0
   },
   {
     "date": "2026-06-01",
-    "daily_extra_total": 265718.8,
-    "cumulative_extra_total": 13153080.51
+    "daily_extra_total": 565821.42,
+    "cumulative_extra_total": 35886857.42
   },
   {
     "date": "2026-06-02",
-    "daily_extra_total": 268430.21,
-    "cumulative_extra_total": 13421510.72
+    "daily_extra_total": 565821.42,
+    "cumulative_extra_total": 36452678.83
   },
   {
     "date": "2026-06-03",
-    "daily_extra_total": 271141.63,
-    "cumulative_extra_total": 13692652.36
+    "daily_extra_total": 514042.29,
+    "cumulative_extra_total": 36966721.12
   },
   {
     "date": "2026-06-04",
-    "daily_extra_total": 273853.05,
-    "cumulative_extra_total": 13966505.4
+    "daily_extra_total": 514042.29,
+    "cumulative_extra_total": 37480763.41
   },
   {
     "date": "2026-06-05",
-    "daily_extra_total": 276564.46,
-    "cumulative_extra_total": 14243069.87
+    "daily_extra_total": 514042.29,
+    "cumulative_extra_total": 37994805.7
   },
   {
     "date": "2026-06-06",
-    "daily_extra_total": 279275.88,
-    "cumulative_extra_total": 14522345.75
+    "daily_extra_total": 514042.29,
+    "cumulative_extra_total": 38508848.0
   },
   {
     "date": "2026-06-07",
-    "daily_extra_total": 281987.3,
-    "cumulative_extra_total": 14804333.04
+    "daily_extra_total": 514042.29,
+    "cumulative_extra_total": 39022890.29
   },
   {
     "date": "2026-06-08",
-    "daily_extra_total": 284698.71,
-    "cumulative_extra_total": 15089031.75
+    "daily_extra_total": 514042.29,
+    "cumulative_extra_total": 39536932.58
   },
   {
     "date": "2026-06-09",
-    "daily_extra_total": 287410.13,
-    "cumulative_extra_total": 15376441.88
+    "daily_extra_total": 514042.29,
+    "cumulative_extra_total": 40050974.87
   },
   {
     "date": "2026-06-10",
-    "daily_extra_total": 290121.54,
-    "cumulative_extra_total": 15666563.43
+    "daily_extra_total": 471866.44,
+    "cumulative_extra_total": 40522841.31
   },
   {
     "date": "2026-06-11",
-    "daily_extra_total": 292832.96,
-    "cumulative_extra_total": 15959396.39
+    "daily_extra_total": 471866.44,
+    "cumulative_extra_total": 40994707.74
   },
   {
     "date": "2026-06-12",
-    "daily_extra_total": 295544.38,
-    "cumulative_extra_total": 16254940.77
+    "daily_extra_total": 471866.44,
+    "cumulative_extra_total": 41466574.18
   },
   {
     "date": "2026-06-13",
-    "daily_extra_total": 298255.79,
-    "cumulative_extra_total": 16553196.56
+    "daily_extra_total": 471866.44,
+    "cumulative_extra_total": 41938440.62
   },
   {
     "date": "2026-06-14",
-    "daily_extra_total": 300967.21,
-    "cumulative_extra_total": 16854163.77
+    "daily_extra_total": 471866.44,
+    "cumulative_extra_total": 42410307.05
   },
   {
     "date": "2026-06-15",
-    "daily_extra_total": 303678.63,
-    "cumulative_extra_total": 17157842.4
+    "daily_extra_total": 471866.44,
+    "cumulative_extra_total": 42882173.49
   },
   {
     "date": "2026-06-16",
-    "daily_extra_total": 306390.04,
-    "cumulative_extra_total": 17464232.44
+    "daily_extra_total": 471866.44,
+    "cumulative_extra_total": 43354039.93
   },
   {
     "date": "2026-06-17",
-    "daily_extra_total": 309101.46,
-    "cumulative_extra_total": 17773333.9
+    "daily_extra_total": 471155.42,
+    "cumulative_extra_total": 43825195.34
   },
   {
     "date": "2026-06-18",
-    "daily_extra_total": 311812.88,
-    "cumulative_extra_total": 18085146.77
+    "daily_extra_total": 471155.42,
+    "cumulative_extra_total": 44296350.76
   },
   {
     "date": "2026-06-19",
-    "daily_extra_total": 314524.29,
-    "cumulative_extra_total": 18399671.07
+    "daily_extra_total": 471155.42,
+    "cumulative_extra_total": 44767506.17
   },
   {
     "date": "2026-06-20",
-    "daily_extra_total": 317235.71,
-    "cumulative_extra_total": 18716906.77
+    "daily_extra_total": 471155.42,
+    "cumulative_extra_total": 45238661.59
   },
   {
     "date": "2026-06-21",
-    "daily_extra_total": 319947.12,
-    "cumulative_extra_total": 19036853.9
+    "daily_extra_total": 471155.42,
+    "cumulative_extra_total": 45709817.0
   },
   {
     "date": "2026-06-22",
-    "daily_extra_total": 322658.54,
-    "cumulative_extra_total": 19359512.44
+    "daily_extra_total": 471155.42,
+    "cumulative_extra_total": 46180972.42
   },
   {
     "date": "2026-06-23",
-    "daily_extra_total": 325369.96,
-    "cumulative_extra_total": 19684882.4
+    "daily_extra_total": 471155.42,
+    "cumulative_extra_total": 46652127.83
   },
   {
     "date": "2026-06-24",
-    "daily_extra_total": 328081.37,
-    "cumulative_extra_total": 20012963.77
+    "daily_extra_total": 391833.74,
+    "cumulative_extra_total": 47043961.57
   },
   {
     "date": "2026-06-25",
-    "daily_extra_total": 330792.79,
-    "cumulative_extra_total": 20343756.56
+    "daily_extra_total": 391833.74,
+    "cumulative_extra_total": 47435795.31
   },
   {
     "date": "2026-06-26",
-    "daily_extra_total": 333504.21,
-    "cumulative_extra_total": 20677260.76
+    "daily_extra_total": 391833.74,
+    "cumulative_extra_total": 47827629.04
   },
   {
     "date": "2026-06-27",
-    "daily_extra_total": 336215.62,
-    "cumulative_extra_total": 21013476.39
+    "daily_extra_total": 391833.74,
+    "cumulative_extra_total": 48219462.78
   },
   {
     "date": "2026-06-28",
-    "daily_extra_total": 338927.04,
-    "cumulative_extra_total": 21352403.42
+    "daily_extra_total": 391833.74,
+    "cumulative_extra_total": 48611296.52
   },
   {
     "date": "2026-06-29",
-    "daily_extra_total": 341638.45,
-    "cumulative_extra_total": 21694041.88
+    "daily_extra_total": 391833.74,
+    "cumulative_extra_total": 49003130.25
   },
   {
     "date": "2026-06-30",
-    "daily_extra_total": 344349.87,
-    "cumulative_extra_total": 22038391.75
+    "daily_extra_total": 391833.74,
+    "cumulative_extra_total": 49394963.99
   },
   {
     "date": "2026-07-01",
-    "daily_extra_total": 347061.29,
-    "cumulative_extra_total": 22385453.04
+    "daily_extra_total": 272484.85,
+    "cumulative_extra_total": 49667448.84
   },
   {
     "date": "2026-07-02",
-    "daily_extra_total": 349772.7,
-    "cumulative_extra_total": 22735225.74
+    "daily_extra_total": 272484.85,
+    "cumulative_extra_total": 49939933.68
   },
   {
     "date": "2026-07-03",
-    "daily_extra_total": 352484.12,
-    "cumulative_extra_total": 23087709.86
+    "daily_extra_total": 272484.85,
+    "cumulative_extra_total": 50212418.53
   },
   {
     "date": "2026-07-04",
-    "daily_extra_total": 355195.54,
-    "cumulative_extra_total": 23442905.4
+    "daily_extra_total": 272484.85,
+    "cumulative_extra_total": 50484903.38
   },
   {
     "date": "2026-07-05",
-    "daily_extra_total": 357906.95,
-    "cumulative_extra_total": 23800812.35
+    "daily_extra_total": 272484.85,
+    "cumulative_extra_total": 50757388.23
   },
   {
     "date": "2026-07-06",
-    "daily_extra_total": 360618.37,
-    "cumulative_extra_total": 24161430.72
+    "daily_extra_total": 272484.85,
+    "cumulative_extra_total": 51029873.07
   },
   {
     "date": "2026-07-07",
-    "daily_extra_total": 363329.79,
-    "cumulative_extra_total": 24524760.51
+    "daily_extra_total": 272484.85,
+    "cumulative_extra_total": 51302357.92
   },
   {
     "date": "2026-07-08",
-    "daily_extra_total": 366041.2,
-    "cumulative_extra_total": 24890801.71
+    "daily_extra_total": 248597.38,
+    "cumulative_extra_total": 51550955.3
   },
   {
     "date": "2026-07-09",
-    "daily_extra_total": 368752.62,
-    "cumulative_extra_total": 25259554.32
+    "daily_extra_total": 248597.38,
+    "cumulative_extra_total": 51799552.68
   },
   {
     "date": "2026-07-10",
-    "daily_extra_total": 371464.03,
-    "cumulative_extra_total": 25631018.36
+    "daily_extra_total": 248597.38,
+    "cumulative_extra_total": 52048150.05
   },
   {
     "date": "2026-07-11",
-    "daily_extra_total": 374175.45,
-    "cumulative_extra_total": 26005193.81
+    "daily_extra_total": 248597.38,
+    "cumulative_extra_total": 52296747.43
   },
   {
     "date": "2026-07-12",
-    "daily_extra_total": 376886.87,
-    "cumulative_extra_total": 26382080.68
+    "daily_extra_total": 248597.38,
+    "cumulative_extra_total": 52545344.81
   },
   {
     "date": "2026-07-13",
-    "daily_extra_total": 379598.28,
-    "cumulative_extra_total": 26761678.96
+    "daily_extra_total": 248597.38,
+    "cumulative_extra_total": 52793942.19
   },
   {
     "date": "2026-07-14",
-    "daily_extra_total": 382309.7,
-    "cumulative_extra_total": 27143988.66
+    "daily_extra_total": 248597.38,
+    "cumulative_extra_total": 53042539.56
   },
   {
     "date": "2026-07-15",
-    "daily_extra_total": 385021.12,
-    "cumulative_extra_total": 27529009.77
+    "daily_extra_total": 239910.27,
+    "cumulative_extra_total": 53282449.83
   },
   {
     "date": "2026-07-16",
-    "daily_extra_total": 387732.53,
-    "cumulative_extra_total": 27916742.31
+    "daily_extra_total": 239910.27,
+    "cumulative_extra_total": 53522360.1
   },
   {
     "date": "2026-07-17",
-    "daily_extra_total": 390443.95,
-    "cumulative_extra_total": 28307186.25
+    "daily_extra_total": 239910.27,
+    "cumulative_extra_total": 53762270.37
   },
   {
     "date": "2026-07-18",
-    "daily_extra_total": 393155.36,
-    "cumulative_extra_total": 28700341.62
+    "daily_extra_total": 239910.27,
+    "cumulative_extra_total": 54002180.64
   },
   {
     "date": "2026-07-19",
-    "daily_extra_total": 395866.78,
-    "cumulative_extra_total": 29096208.4
+    "daily_extra_total": 239910.27,
+    "cumulative_extra_total": 54242090.91
   },
   {
     "date": "2026-07-20",
-    "daily_extra_total": 398578.2,
-    "cumulative_extra_total": 29494786.6
+    "daily_extra_total": 239910.27,
+    "cumulative_extra_total": 54482001.18
   },
   {
     "date": "2026-07-21",
-    "daily_extra_total": 401289.61,
-    "cumulative_extra_total": 29896076.21
+    "daily_extra_total": 239910.27,
+    "cumulative_extra_total": 54721911.45
   },
   {
     "date": "2026-07-22",
-    "daily_extra_total": 404001.03,
-    "cumulative_extra_total": 30300077.24
+    "daily_extra_total": 282633.14,
+    "cumulative_extra_total": 55004544.59
   },
   {
     "date": "2026-07-23",
-    "daily_extra_total": 406712.45,
-    "cumulative_extra_total": 30706789.69
+    "daily_extra_total": 282633.14,
+    "cumulative_extra_total": 55287177.73
   },
   {
     "date": "2026-07-24",
-    "daily_extra_total": 409423.86,
-    "cumulative_extra_total": 31116213.55
+    "daily_extra_total": 282633.14,
+    "cumulative_extra_total": 55569810.87
   },
   {
     "date": "2026-07-25",
-    "daily_extra_total": 412135.28,
-    "cumulative_extra_total": 31528348.83
+    "daily_extra_total": 282633.14,
+    "cumulative_extra_total": 55852444.01
   },
   {
     "date": "2026-07-26",
-    "daily_extra_total": 414846.7,
-    "cumulative_extra_total": 31943195.52
+    "daily_extra_total": 282633.14,
+    "cumulative_extra_total": 56135077.16
   },
   {
     "date": "2026-07-27",
-    "daily_extra_total": 417558.11,
-    "cumulative_extra_total": 32360753.64
+    "daily_extra_total": 282633.14,
+    "cumulative_extra_total": 56417710.3
   },
   {
     "date": "2026-07-28",
-    "daily_extra_total": 420269.53,
-    "cumulative_extra_total": 32781023.16
+    "daily_extra_total": 282633.14,
+    "cumulative_extra_total": 56700343.44
   },
   {
     "date": "2026-07-29",
-    "daily_extra_total": 422980.94,
-    "cumulative_extra_total": 33204004.11
+    "daily_extra_total": 324843.77,
+    "cumulative_extra_total": 57025187.21
   },
   {
     "date": "2026-07-30",
-    "daily_extra_total": 425692.36,
-    "cumulative_extra_total": 33629696.47
+    "daily_extra_total": 324843.77,
+    "cumulative_extra_total": 57350030.98
   },
   {
     "date": "2026-07-31",
-    "daily_extra_total": 428403.78,
-    "cumulative_extra_total": 34058100.24
+    "daily_extra_total": 324843.77,
+    "cumulative_extra_total": 57674874.74
   },
   {
     "date": "2026-08-01",
-    "daily_extra_total": 431115.19,
-    "cumulative_extra_total": 34489215.44
+    "daily_extra_total": 324843.77,
+    "cumulative_extra_total": 57999718.51
   },
   {
     "date": "2026-08-02",
-    "daily_extra_total": 433826.61,
-    "cumulative_extra_total": 34923042.05
+    "daily_extra_total": 324843.77,
+    "cumulative_extra_total": 58324562.28
   },
   {
     "date": "2026-08-03",
-    "daily_extra_total": 436538.03,
-    "cumulative_extra_total": 35359580.07
+    "daily_extra_total": 324843.77,
+    "cumulative_extra_total": 58649406.05
   },
   {
     "date": "2026-08-04",
-    "daily_extra_total": 439249.44,
-    "cumulative_extra_total": 35798829.51
+    "daily_extra_total": 324843.77,
+    "cumulative_extra_total": 58974249.82
   },
   {
     "date": "2026-08-05",
-    "daily_extra_total": 441960.86,
-    "cumulative_extra_total": 36240790.37
+    "daily_extra_total": 414921.52,
+    "cumulative_extra_total": 59389171.33
   },
   {
     "date": "2026-08-06",
-    "daily_extra_total": 444672.27,
-    "cumulative_extra_total": 36685462.65
+    "daily_extra_total": 414921.52,
+    "cumulative_extra_total": 59804092.85
   },
   {
     "date": "2026-08-07",
-    "daily_extra_total": 447383.69,
-    "cumulative_extra_total": 37132846.34
+    "daily_extra_total": 414921.52,
+    "cumulative_extra_total": 60219014.37
   },
   {
     "date": "2026-08-08",
-    "daily_extra_total": 450095.11,
-    "cumulative_extra_total": 37582941.44
+    "daily_extra_total": 414921.52,
+    "cumulative_extra_total": 60633935.88
   },
   {
     "date": "2026-08-09",
-    "daily_extra_total": 452806.52,
-    "cumulative_extra_total": 38035747.97
+    "daily_extra_total": 414921.52,
+    "cumulative_extra_total": 61048857.4
   },
   {
     "date": "2026-08-10",
-    "daily_extra_total": 455517.94,
-    "cumulative_extra_total": 38491265.91
+    "daily_extra_total": 414921.52,
+    "cumulative_extra_total": 61463778.92
   },
   {
     "date": "2026-08-11",
-    "daily_extra_total": 458229.36,
-    "cumulative_extra_total": 38949495.26
+    "daily_extra_total": 414921.52,
+    "cumulative_extra_total": 61878700.43
   },
   {
     "date": "2026-08-12",
-    "daily_extra_total": 460940.77,
-    "cumulative_extra_total": 39410436.04
+    "daily_extra_total": 415256.59,
+    "cumulative_extra_total": 62293957.03
   },
   {
     "date": "2026-08-13",
-    "daily_extra_total": 463652.19,
-    "cumulative_extra_total": 39874088.22
+    "daily_extra_total": 415256.59,
+    "cumulative_extra_total": 62709213.62
   },
   {
     "date": "2026-08-14",
-    "daily_extra_total": 466363.6,
-    "cumulative_extra_total": 40340451.83
+    "daily_extra_total": 415256.59,
+    "cumulative_extra_total": 63124470.22
   },
   {
     "date": "2026-08-15",
-    "daily_extra_total": 469075.02,
-    "cumulative_extra_total": 40809526.85
+    "daily_extra_total": 415256.59,
+    "cumulative_extra_total": 63539726.81
   },
   {
     "date": "2026-08-16",
-    "daily_extra_total": 471786.44,
-    "cumulative_extra_total": 41281313.29
+    "daily_extra_total": 415256.59,
+    "cumulative_extra_total": 63954983.41
   },
   {
     "date": "2026-08-17",
-    "daily_extra_total": 474497.85,
-    "cumulative_extra_total": 41755811.14
+    "daily_extra_total": 415256.59,
+    "cumulative_extra_total": 64370240.0
   },
   {
     "date": "2026-08-18",
-    "daily_extra_total": 477209.27,
-    "cumulative_extra_total": 42233020.41
+    "daily_extra_total": 415256.59,
+    "cumulative_extra_total": 64785496.59
   },
   {
     "date": "2026-08-19",
-    "daily_extra_total": 479920.69,
-    "cumulative_extra_total": 42712941.1
+    "daily_extra_total": 414232.49,
+    "cumulative_extra_total": 65199729.09
   },
   {
     "date": "2026-08-20",
-    "daily_extra_total": 482632.1,
-    "cumulative_extra_total": 43195573.2
+    "daily_extra_total": 414232.49,
+    "cumulative_extra_total": 65613961.58
   },
   {
     "date": "2026-08-21",
-    "daily_extra_total": 485343.52,
-    "cumulative_extra_total": 43680916.72
+    "daily_extra_total": 414232.49,
+    "cumulative_extra_total": 66028194.08
   },
   {
     "date": "2026-08-22",
-    "daily_extra_total": 488054.94,
-    "cumulative_extra_total": 44168971.66
+    "daily_extra_total": 414232.49,
+    "cumulative_extra_total": 66442426.57
   },
   {
     "date": "2026-08-23",
-    "daily_extra_total": 490766.35,
-    "cumulative_extra_total": 44659738.01
+    "daily_extra_total": 404442.7,
+    "cumulative_extra_total": 66846869.27
   },
   {
     "date": "2026-08-24",
-    "daily_extra_total": 493477.77,
-    "cumulative_extra_total": 45153215.78
+    "daily_extra_total": 404442.7,
+    "cumulative_extra_total": 67251311.97
   },
   {
     "date": "2026-08-25",
-    "daily_extra_total": 496189.18,
-    "cumulative_extra_total": 45649404.96
+    "daily_extra_total": 404442.7,
+    "cumulative_extra_total": 67655754.67
   },
   {
     "date": "2026-08-26",
-    "daily_extra_total": 498900.6,
-    "cumulative_extra_total": 46148305.56
+    "daily_extra_total": 449423.97,
+    "cumulative_extra_total": 68105178.64
   },
   {
     "date": "2026-08-27",
-    "daily_extra_total": 501612.02,
-    "cumulative_extra_total": 46649917.58
+    "daily_extra_total": 449423.97,
+    "cumulative_extra_total": 68554602.6
   },
   {
     "date": "2026-08-28",
-    "daily_extra_total": 504323.43,
-    "cumulative_extra_total": 47154241.01
+    "daily_extra_total": 449423.97,
+    "cumulative_extra_total": 69004026.57
   },
   {
     "date": "2026-08-29",
-    "daily_extra_total": 507034.85,
-    "cumulative_extra_total": 47661275.86
+    "daily_extra_total": 449423.97,
+    "cumulative_extra_total": 69453450.54
   },
   {
     "date": "2026-08-30",
-    "daily_extra_total": 509746.27,
-    "cumulative_extra_total": 48171022.13
+    "daily_extra_total": 449423.97,
+    "cumulative_extra_total": 69902874.51
   },
   {
     "date": "2026-08-31",
-    "daily_extra_total": 512457.68,
-    "cumulative_extra_total": 48683479.81
+    "daily_extra_total": 449423.97,
+    "cumulative_extra_total": 70352298.48
   },
   {
     "date": "2026-09-01",
-    "daily_extra_total": 515169.1,
-    "cumulative_extra_total": 49198648.91
+    "daily_extra_total": 449423.97,
+    "cumulative_extra_total": 70801722.44
   },
   {
     "date": "2026-09-02",
-    "daily_extra_total": 517880.51,
-    "cumulative_extra_total": 49716529.42
+    "daily_extra_total": 530411.09,
+    "cumulative_extra_total": 71332133.53
   },
   {
     "date": "2026-09-03",
-    "daily_extra_total": 520591.93,
-    "cumulative_extra_total": 50237121.35
+    "daily_extra_total": 530411.09,
+    "cumulative_extra_total": 71862544.62
   },
   {
     "date": "2026-09-04",
-    "daily_extra_total": 523303.35,
-    "cumulative_extra_total": 50760424.7
+    "daily_extra_total": 530411.09,
+    "cumulative_extra_total": 72392955.71
   },
   {
     "date": "2026-09-05",
-    "daily_extra_total": 526014.76,
-    "cumulative_extra_total": 51286439.46
+    "daily_extra_total": 530411.09,
+    "cumulative_extra_total": 72923366.8
   },
   {
     "date": "2026-09-06",
-    "daily_extra_total": 528726.18,
-    "cumulative_extra_total": 51815165.64
+    "daily_extra_total": 530411.09,
+    "cumulative_extra_total": 73453777.89
   },
   {
     "date": "2026-09-07",
-    "daily_extra_total": 531437.6,
-    "cumulative_extra_total": 52346603.24
+    "daily_extra_total": 530411.09,
+    "cumulative_extra_total": 73984188.98
   },
   {
     "date": "2026-09-08",
-    "daily_extra_total": 534149.01,
-    "cumulative_extra_total": 52880752.25
+    "daily_extra_total": 530411.09,
+    "cumulative_extra_total": 74514600.07
   },
   {
     "date": "2026-09-09",
-    "daily_extra_total": 536860.43,
-    "cumulative_extra_total": 53417612.68
+    "daily_extra_total": 521200.86,
+    "cumulative_extra_total": 75035800.94
   },
   {
     "date": "2026-09-10",
-    "daily_extra_total": 539571.85,
-    "cumulative_extra_total": 53957184.53
+    "daily_extra_total": 521200.86,
+    "cumulative_extra_total": 75557001.8
   },
   {
     "date": "2026-09-11",
-    "daily_extra_total": 542283.26,
-    "cumulative_extra_total": 54499467.79
+    "daily_extra_total": 521200.86,
+    "cumulative_extra_total": 76078202.66
   },
   {
     "date": "2026-09-12",
-    "daily_extra_total": 544994.68,
-    "cumulative_extra_total": 55044462.47
+    "daily_extra_total": 521200.86,
+    "cumulative_extra_total": 76599403.52
   },
   {
     "date": "2026-09-13",
-    "daily_extra_total": 547706.09,
-    "cumulative_extra_total": 55592168.56
+    "daily_extra_total": 521200.86,
+    "cumulative_extra_total": 77120604.39
   },
   {
     "date": "2026-09-14",
-    "daily_extra_total": 550417.51,
-    "cumulative_extra_total": 56142586.07
+    "daily_extra_total": 521200.86,
+    "cumulative_extra_total": 77641805.25
   },
   {
     "date": "2026-09-15",
-    "daily_extra_total": 553128.93,
-    "cumulative_extra_total": 56695715.0
+    "daily_extra_total": 521200.86,
+    "cumulative_extra_total": 78163006.11
   },
   {
     "date": "2026-09-16",
-    "daily_extra_total": 555840.34,
-    "cumulative_extra_total": 57251555.34
+    "daily_extra_total": 543778.14,
+    "cumulative_extra_total": 78706784.25
   },
   {
     "date": "2026-09-17",
-    "daily_extra_total": 558551.76,
-    "cumulative_extra_total": 57810107.1
+    "daily_extra_total": 543778.14,
+    "cumulative_extra_total": 79250562.39
   },
   {
     "date": "2026-09-18",
-    "daily_extra_total": 561263.18,
-    "cumulative_extra_total": 58371370.28
+    "daily_extra_total": 543778.14,
+    "cumulative_extra_total": 79794340.53
   },
   {
     "date": "2026-09-19",
-    "daily_extra_total": 563974.59,
-    "cumulative_extra_total": 58935344.87
+    "daily_extra_total": 543778.14,
+    "cumulative_extra_total": 80338118.67
   },
   {
     "date": "2026-09-20",
-    "daily_extra_total": 566686.01,
-    "cumulative_extra_total": 59502030.88
+    "daily_extra_total": 543778.14,
+    "cumulative_extra_total": 80881896.81
   },
   {
     "date": "2026-09-21",
-    "daily_extra_total": 569397.42,
-    "cumulative_extra_total": 60071428.3
+    "daily_extra_total": 543778.14,
+    "cumulative_extra_total": 81425674.95
   },
   {
     "date": "2026-09-22",
-    "daily_extra_total": 572108.84,
-    "cumulative_extra_total": 60643537.14
+    "daily_extra_total": 543778.14,
+    "cumulative_extra_total": 81969453.09
   },
   {
     "date": "2026-09-23",
-    "daily_extra_total": 574820.26,
-    "cumulative_extra_total": 61218357.4
+    "daily_extra_total": 588377.34,
+    "cumulative_extra_total": 82557830.42
   },
   {
     "date": "2026-09-24",
-    "daily_extra_total": 577531.67,
-    "cumulative_extra_total": 61795889.07
+    "daily_extra_total": 588377.34,
+    "cumulative_extra_total": 83146207.76
   },
   {
     "date": "2026-09-25",
-    "daily_extra_total": 580243.09,
-    "cumulative_extra_total": 62376132.16
+    "daily_extra_total": 588377.34,
+    "cumulative_extra_total": 83734585.1
   },
   {
     "date": "2026-09-26",
-    "daily_extra_total": 582954.51,
-    "cumulative_extra_total": 62959086.67
+    "daily_extra_total": 588377.34,
+    "cumulative_extra_total": 84322962.44
   },
   {
     "date": "2026-09-27",
-    "daily_extra_total": 585665.92,
-    "cumulative_extra_total": 63544752.59
+    "daily_extra_total": 588377.34,
+    "cumulative_extra_total": 84911339.78
   },
   {
     "date": "2026-09-28",
     "daily_extra_total": 588377.34,
-    "cumulative_extra_total": 64133129.93
+    "cumulative_extra_total": 85499717.12
+  },
+  {
+    "date": "2026-09-29",
+    "daily_extra_total": 588377.34,
+    "cumulative_extra_total": 86088094.46
   }
 ]

@@ -69,6 +69,10 @@ fuel-tracker/
 累计多付总额 = Σ(从2/23到今天的每日多付总额)
 ```
 
+「当日柴油价格」取当日或之前最近一次抓到的报价（官网按周更新，两次报价之间沿用上一次的价）。
+已经过去的日子不会因为之后的价格变动被改写——`engine/cumulative_calc.py` 每次运行都会比对已入库的
+`data/cumulative_records.json`，有历史日期被改写就在日志里点名。口径守卫：`python engine/test_cumulative_calc.py`。
+
 ## 数据来源
 
 - GlobalPetrolPrices.com
