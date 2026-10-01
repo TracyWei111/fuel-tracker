@@ -28,6 +28,9 @@ jobs:
           playwright install chromium
           playwright install-deps chromium
 
+      - name: Historical calculation regression gate
+        run: python engine/test_cumulative_calc.py
+
       - name: Run scraper
         run: python scraper/auto_scraper.py
 
@@ -44,3 +47,10 @@ jobs:
           git add data/prices.json data/cumulative_records.json reports/
           git diff --quiet && git diff --staged --quiet || git commit -m "Update fuel prices - $(date '+%Y-%m-%d')"
           git push
+      - name: Attach report for review
+        uses: actions/upload-artifact@v4
+        with:
+          name: fuel-report-${{ github.run_id }}
+          path: reports/latest.html
+          if-no-files-found: error
+          retention-days: 30
