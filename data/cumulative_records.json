@@ -1098,5 +1098,10 @@
     "date": "2026-09-30",
     "daily_extra_total": 607294.56,
     "cumulative_extra_total": 86695389.02
+  },
+  {
+    "date": "2026-10-01",
+    "daily_extra_total": 607294.56,
+    "cumulative_extra_total": 87302683.59
   }
 ]
