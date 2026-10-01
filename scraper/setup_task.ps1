@@ -6,13 +6,13 @@ $TaskName = "FuelPriceScraper"
 $TaskDescription = "每天下午3点自动抓取柴油价格数据"
 
 # 启动脚本路径
-$ScriptPath = "C:\Users\Tracy Wei\Agent Workspace\fuel-tracker\scraper\run_scraper.bat"
+$ScriptPath = "C:\Users\Tracy\Documents\fuel-tracker\scraper\run_scraper.bat"
 
 # 创建触发器：每天下午3点
 $Trigger = New-ScheduledTaskTrigger -Daily -At "3:00PM"
 
 # 创建操作
-$Action = New-ScheduledTaskAction -Execute $ScriptPath -WorkingDirectory "C:\Users\Tracy Wei\Agent Workspace\fuel-tracker\scraper"
+$Action = New-ScheduledTaskAction -Execute $ScriptPath -WorkingDirectory "C:\Users\Tracy\Documents\fuel-tracker\scraper"
 
 # 创建设置
 $Settings = New-ScheduledTaskSettingsSet -StartWhenAvailable -DontStopOnIdleEnd -AllowStartIfOnBatteries

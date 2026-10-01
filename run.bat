@@ -11,6 +11,6 @@ echo ============================================================
 echo.
 
 cd /d "%~dp0"
-"C:\Users\Tracy Wei\AppData\Local\Python\bin\python3.exe" dashboard\app.py
+"C:\Users\Tracy\Documents\Codex\migration-env\Scripts\python.exe" dashboard\app.py
 
 pause
