@@ -122,6 +122,7 @@
   <header class="page-head">
     <h1>极兔（J&amp;T Express）燃油成本追踪</h1>
     <p id="meta-line">加载中…</p>
+    <p id="freshness-warning" style="color:#a43b21;font-weight:600" hidden></p>
   </header>
 
   <div class="kpi-row" id="kpi-row"></div>
@@ -347,6 +348,12 @@ function cssVar(name) { return getComputedStyle(document.documentElement).getPro
 
 function renderMeta() {
   const m = DATA.meta;
+  const todayHKT = new Intl.DateTimeFormat('en-CA', {timeZone: 'Asia/Hong_Kong', year: 'numeric', month: '2-digit', day: '2-digit'}).format(new Date());
+  if (m.cumulative_as_of < todayHKT) {
+    const warning = document.getElementById('freshness-warning');
+    warning.hidden = false;
+    warning.textContent = `这是 ${m.cumulative_as_of} 的已验证报告，尚非今天的日报。请检查云端运行状态；定时执行可能延迟或失败。`;
+  }
   document.getElementById('meta-line').textContent =
     `数据源：${m.source}（截至 ${m.prices_last_update.slice(0,10)}，官网按周刷新）· 基准日 ${m.baseline_date} · 累计口径截至 ${m.cumulative_as_of} · 页面生成于 ${m.generated_at}`;
   document.getElementById('page-foot').textContent =

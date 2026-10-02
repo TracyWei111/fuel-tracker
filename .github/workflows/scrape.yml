@@ -5,6 +5,26 @@ on:
     # 每天下午3点（UTC时间 07:00，北京时间 15:00）
     - cron: '0 7 * * *'
   workflow_dispatch:  # 手动触发
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/scrape.yml'
+      - 'scraper/auto_scraper.py'
+      - 'engine/**'
+      - 'report/**'
+      - 'tests/**'
+
+concurrency:
+  group: fuel-daily-publication
+  cancel-in-progress: false
+
+env:
+  TZ: Asia/Hong_Kong
+  PYTHONUNBUFFERED: '1'
+
+defaults:
+  run:
+    shell: bash
 
 permissions:
   contents: write  # 允许 push 到仓库
@@ -12,6 +32,7 @@ permissions:
 jobs:
   scrape:
     runs-on: ubuntu-latest
+    timeout-minutes: 25
 
     steps:
       - name: Checkout repository
@@ -29,10 +50,21 @@ jobs:
           playwright install-deps chromium
 
       - name: Historical calculation regression gate
-        run: python engine/test_cumulative_calc.py
+        run: |
+          python engine/test_cumulative_calc.py
+          python -m unittest discover -s tests -v
 
       - name: Run scraper
-        run: python scraper/auto_scraper.py
+        run: |
+          mkdir -p logs
+          # Each country retries three times; retry a failed batch after cooling down.
+          for attempt in 1 2 3; do
+            if python scraper/auto_scraper.py 2>&1 | tee -a logs/scraper.log; then
+              exit 0
+            fi
+            if [ "$attempt" -lt 3 ]; then sleep 30; fi
+          done
+          exit 1
 
       - name: Run cumulative calculation
         run: python engine/cumulative_calc.py
@@ -40,11 +72,14 @@ jobs:
       - name: Build HTML report
         run: python report/build_html_report.py
 
+      - name: Verify rendered report
+        run: python report/verify_html_report.py
+
       - name: Commit and push if changed
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add data/prices.json data/cumulative_records.json reports/
+          git add data/prices.json data/cumulative_records.json data/anchors_history.json reports/
           git diff --quiet && git diff --staged --quiet || git commit -m "Update fuel prices - $(date '+%Y-%m-%d')"
           git push
       - name: Attach report for review
@@ -54,3 +89,25 @@ jobs:
           path: reports/latest.html
           if-no-files-found: error
           retention-days: 30
+
+      - name: Keep collection diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: fuel-diagnostics-${{ github.run_id }}
+          path: logs/
+          if-no-files-found: warn
+          retention-days: 30
+
+      - name: Record outcome
+        if: always()
+        env:
+          RESULT: ${{ job.status }}
+        run: |
+          printf '## Fuel daily: %s\n\n' "$RESULT" >> "$GITHUB_STEP_SUMMARY"
+          printf 'Hong Kong time: %s\n\n' "$(date --iso-8601=seconds)" >> "$GITHUB_STEP_SUMMARY"
+          if [ "$RESULT" != success ]; then
+            echo 'Publication failed. The last successful repository report is preserved. Inspect fuel-diagnostics and the failed step.' >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo 'All eight countries, cumulative history and the rendered HTML report passed validation.' >> "$GITHUB_STEP_SUMMARY"
+          fi

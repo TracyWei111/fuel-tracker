@@ -13,8 +13,9 @@ needed to view it).
 """
 import json
 import sys
+import math
 from pathlib import Path
-from datetime import datetime
+from datetime import datetime, timezone, timedelta
 
 import yaml
 
@@ -99,7 +100,7 @@ def build_payload() -> dict:
 
     payload = {
         "meta": {
-            "generated_at": datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ"),
+            "generated_at": datetime.now(timezone(timedelta(hours=8))).isoformat(),
             "source": prices_meta.get("source", "GlobalPetrolPrices.com"),
             "prices_last_update": prices_meta.get("last_update"),
             "baseline_date": baseline_date,
@@ -128,6 +129,31 @@ def build_payload() -> dict:
     return payload
 
 
+def validate_payload(payload: dict, today: str):
+    """Fail publication if coverage, freshness or headline arithmetic is incomplete."""
+    expected = set(payload['country_order'])
+    if not expected or set(payload['countries']) != expected:
+        raise ValueError('Report country coverage is incomplete')
+    if payload['meta']['cumulative_as_of'] != today:
+        raise ValueError('Cumulative calculation is stale')
+    for name, country in payload['countries'].items():
+        if country.get('latest_date') != today or country.get('error'):
+            raise ValueError(f'{name}: missing fresh observation')
+        for field in ('latest_price', 'cost_per_order', 'daily_orders'):
+            value = country.get(field)
+            if not isinstance(value, (int, float)) or not math.isfinite(value) or value <= 0:
+                raise ValueError(f'{name}: invalid {field}')
+        if not country.get('series'):
+            raise ValueError(f'{name}: empty history')
+    series = payload['cumulative_series']
+    total = sum(row['daily'] for row in series)
+    headline = payload['kpi']['cumulative_extra_total']
+    if (not math.isfinite(headline) or series[-1]['date'] != today
+            or abs(series[-1]['cumulative'] - headline) > 0.01
+            or abs(total - headline) > max(0.02, len(series) * 0.0051)):
+        raise ValueError('Cumulative headline does not reconcile to daily history')
+
+
 def render_html(payload: dict) -> str:
     template_path = REPORT_DIR / "report_template.html"
     template = template_path.read_text(encoding="utf-8")
@@ -137,6 +163,7 @@ def render_html(payload: dict) -> str:
 
 def main():
     payload = build_payload()
+    validate_payload(payload, datetime.now(timezone(timedelta(hours=8))).date().isoformat())
     html = render_html(payload)
 
     reports_dir = REPO / "reports"

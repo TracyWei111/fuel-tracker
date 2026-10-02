@@ -11,7 +11,7 @@
 
 import sys
 import json
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 if sys.platform == 'win32':
@@ -75,7 +75,8 @@ def calculate_cumulative_extra():
 
     # 时间范围 - 动态计算到今天
     baseline_date = datetime.strptime(config['baseline_date'], '%Y-%m-%d')
-    end_date = datetime.now().replace(hour=0, minute=0, second=0, microsecond=0)
+    end_date = datetime.now(timezone(timedelta(hours=8))).replace(
+        hour=0, minute=0, second=0, microsecond=0, tzinfo=None)
     days_total = (end_date - baseline_date).days
 
     if days_total < 0:
@@ -215,6 +216,7 @@ def report_history_drift(output_path, new_records, tolerance=0.01):
         print(f"  {date_str}: ${old_value:,.2f} -> ${new_value:,.2f}")
     if len(drifted) > 5:
         print(f"  ... 另有 {len(drifted) - 5} 天")
+    raise ValueError('Historical cumulative values changed; publication blocked')
 
 
 if __name__ == "__main__":

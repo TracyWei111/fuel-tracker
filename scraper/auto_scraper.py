@@ -7,8 +7,10 @@ Fuel Price Scraper - 自动抓取柴油价格数据
 """
 
 import json
-import asyncio
-from datetime import datetime
+import math
+import time
+import copy
+from datetime import datetime, timezone, timedelta
 from pathlib import Path
 
 # Playwright 同步 API
@@ -72,8 +74,8 @@ def scrape_country(page, country_name: str) -> dict:
     url = f"{BASE_URL}/{country_name}/diesel_prices/"
 
     try:
-        page.goto(url, timeout=30000)
-        page.wait_for_load_state("networkidle", timeout=15000)
+        page.goto(url, timeout=30000, wait_until='domcontentloaded')
+        page.wait_for_selector("body", timeout=15000)
 
         # 提取价格数据
         text = page.inner_text("body")
@@ -101,7 +103,7 @@ def scrape_country(page, country_name: str) -> dict:
             print(f"  锚点解析失败: {e}")
 
         return {
-            "date": datetime.now().strftime("%Y-%m-%d"),
+            "date": datetime.now(timezone(timedelta(hours=8))).strftime("%Y-%m-%d"),
             "price_usd": usd_price,
             "price_local": local_price,
             "currency": currency,
@@ -113,129 +115,86 @@ def scrape_country(page, country_name: str) -> dict:
         return None
 
 
+def atomic_json(path, value):
+    path.parent.mkdir(parents=True, exist_ok=True)
+    temporary = path.with_suffix(path.suffix + '.tmp')
+    temporary.write_text(json.dumps(value, ensure_ascii=False, indent=2,
+                                    allow_nan=False), encoding='utf-8')
+    temporary.replace(path)
+
+
+def update_prices(project_dir, fetch, today=None, retry_delay=2):
+    """Publish only a complete fresh batch; retries never turn old data into success."""
+    now = datetime.now(timezone(timedelta(hours=8)))
+    today = today or now.date().isoformat()
+    output_path = project_dir / 'data/prices.json'
+    existing = json.loads(output_path.read_text(encoding='utf-8'))
+    output = copy.deepcopy(existing)
+    failures, collected, anchors = [], {}, {}
+    for name, currency, name_cn in COUNTRIES:
+        error = ''
+        for attempt in range(3):
+            try:
+                quote = fetch(name)
+                if not quote or quote.get('date') != today or quote.get('currency') != currency:
+                    raise ValueError('missing quote, stale date or wrong currency')
+                for field in ('price_usd', 'price_local'):
+                    value = quote.get(field)
+                    if isinstance(value, bool) or not isinstance(value, (int, float)) or not math.isfinite(value) or value <= 0:
+                        raise ValueError(f'invalid {field}: {value}')
+                collected[name] = quote
+                break
+            except Exception as exc:
+                error = str(exc)
+                print(f'{name}: attempt {attempt + 1}/3 failed: {error}', flush=True)
+                if attempt < 2:
+                    time.sleep(retry_delay)
+        if name not in collected:
+            failures.append(name)
+            continue
+        quote = collected[name]
+        prior = output['countries'].get(name, {})
+        history = prior.get('diesel', prior.get('diesel_history', []))
+        # Same-day reruns refresh the quote without duplicating or rewriting past days.
+        history = [row for row in history if row['date'] != today]
+        history.append({'date': today, 'price': quote['price_usd'],
+                        'price_local': quote['price_local'], 'currency': currency})
+        output['countries'][name] = {'diesel': sorted(history, key=lambda r: r['date']),
+                                     'country_cn': name_cn, 'currency': currency}
+        if quote.get('anchors_local'):
+            anchors[name] = quote['anchors_local']
+        print(f'{name}: OK USD {quote["price_usd"]}', flush=True)
+    receipt = {'status': 'failed' if failures else 'success', 'observed_date': today,
+               'finished_at': datetime.now(timezone(timedelta(hours=8))).isoformat(),
+               'successful_countries': sorted(collected), 'failed_countries': failures}
+    atomic_json(project_dir / 'logs/scrape-status.json', receipt)
+    if failures:
+        raise RuntimeError('Collection incomplete; original prices preserved: ' + ', '.join(failures))
+    output['last_update'] = receipt['finished_at']
+    output['source'] = 'GlobalPetrolPrices.com'
+    atomic_json(output_path, output)
+    if anchors:
+        path = project_dir / 'data/anchors_history.json'
+        history = json.loads(path.read_text(encoding='utf-8')) if path.exists() else {'scrapes': []}
+        history['scrapes'] = [row for row in history['scrapes'] if row.get('scrape_date') != today]
+        history['scrapes'].append({'scrape_date': today, 'scrape_iso': receipt['finished_at'],
+                                   'countries': anchors})
+        history['scrapes'].sort(key=lambda row: row['scrape_date'])
+        history['last_update'] = receipt['finished_at']
+        atomic_json(path, history)
+    return receipt
+
+
 def main():
-    """主函数"""
-    script_dir = Path(__file__).parent
-    project_dir = script_dir.parent
-    data_dir = project_dir / "data"
-    data_dir.mkdir(exist_ok=True)
-    output_path = data_dir / "prices.json"
-    anchors_path = data_dir / "anchors_history.json"
-
-    # 日志目录
-    log_dir = project_dir / "logs"
-    log_dir.mkdir(exist_ok=True)
-    log_path = log_dir / "scraper.log"
-
-    print(f"[{datetime.now().isoformat()}] 开始抓取柴油价格数据")
-
-    # 读取现有历史数据
-    existing_data = {"last_update": None, "source": "GlobalPetrolPrices.com", "countries": {}}
-    if output_path.exists():
+    project_dir = Path(__file__).resolve().parent.parent
+    with sync_playwright() as playwright:
+        browser = playwright.chromium.launch(headless=True)
         try:
-            with open(output_path, 'r', encoding='utf-8') as f:
-                existing_data = json.load(f)
-        except:
-            pass
-
-    # 读取 anchors 历史
-    anchors_history = {"scrapes": []}
-    if anchors_path.exists():
-        try:
-            with open(anchors_path, 'r', encoding='utf-8') as f:
-                anchors_history = json.load(f)
-        except:
-            pass
-
-    results = {}
-    today_anchors = {}
-
-    with sync_playwright() as p:
-        browser = p.chromium.launch(headless=True)
-        context = browser.new_context()
-        page = context.new_page()
-
-        for country_name, currency, country_cn in COUNTRIES:
-            print(f"  抓取: {country_cn}...", end=" ")
-            data = scrape_country(page, country_name)
-
-            if data and data.get("price_usd"):
-                # 获取现有历史记录（兼容 diesel 和 diesel_history 格式）
-                country_existing = existing_data.get("countries", {}).get(country_name, {})
-                diesel_list = country_existing.get("diesel", country_existing.get("diesel_history", []))
-
-                # 添加新记录（使用 calculator.py 兼容格式）
-                today = data["date"]
-                existing_dates = [r["date"] for r in diesel_list]
-                if today not in existing_dates:
-                    diesel_list.append({
-                        "date": today,
-                        "price": data["price_usd"],  # 字段名改为 price
-                        "price_local": data["price_local"],
-                        "currency": currency
-                    })
-
-                # 按日期排序
-                diesel_list.sort(key=lambda x: x["date"])
-
-                results[country_name] = {
-                    "diesel": diesel_list,  # 字段名改为 diesel
-                    "country_cn": country_cn,
-                    "currency": currency
-                }
-
-                # 收集 4 锚点（如果解析成功）
-                if data.get("anchors_local"):
-                    today_anchors[country_name] = data["anchors_local"]
-
-                print(f"OK USD {data['price_usd']}")
-            else:
-                # 保持现有数据
-                if country_name in existing_data.get("countries", {}):
-                    results[country_name] = existing_data["countries"][country_name]
-                print("SKIP 失败")
-
-            page.wait_for_timeout(500)
-
-        browser.close()
-
-    # 保存结果
-    if results:
-        output = {
-            "last_update": datetime.now().isoformat(),
-            "source": "GlobalPetrolPrices.com",
-            "countries": results
-        }
-
-        with open(output_path, 'w', encoding='utf-8') as f:
-            json.dump(output, f, ensure_ascii=False, indent=2)
-
-        print(f"数据已保存: {output_path}")
-        print(f"共 {len(results)} 个国家")
-
-    # 保存 anchors 历史（每天一条记录）
-    if today_anchors:
-        today_str = datetime.now().strftime("%Y-%m-%d")
-        # 同日去重
-        anchors_history["scrapes"] = [
-            s for s in anchors_history.get("scrapes", [])
-            if s.get("scrape_date") != today_str
-        ]
-        anchors_history["scrapes"].append({
-            "scrape_date": today_str,
-            "scrape_iso": datetime.now().isoformat(),
-            "countries": today_anchors,
-        })
-        anchors_history["scrapes"].sort(key=lambda s: s.get("scrape_date", ""))
-        anchors_history["last_update"] = datetime.now().isoformat()
-        with open(anchors_path, 'w', encoding='utf-8') as f:
-            json.dump(anchors_history, f, ensure_ascii=False, indent=2)
-        print(f"锚点历史已保存: {anchors_path} (累计 {len(anchors_history['scrapes'])} 次)")
-
-    # 写入日志
-    with open(log_path, 'a', encoding='utf-8') as f:
-        f.write(f"[{datetime.now().isoformat()}] 完成，{len(results)} 个国家，锚点 {len(today_anchors)} 个\n")
+            page = browser.new_page()
+            update_prices(project_dir, lambda name: scrape_country(page, name))
+        finally:
+            browser.close()
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()
