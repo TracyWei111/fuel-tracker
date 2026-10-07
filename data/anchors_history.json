@@ -269,7 +269,61 @@
           "one_year_ago": 5.99
         }
       }
+    },
+    {
+      "scrape_date": "2026-10-07",
+      "scrape_iso": "2026-10-07T22:23:12.271227+08:00",
+      "countries": {
+        "China": {
+          "current": 8.3,
+          "one_month_ago": 7.75,
+          "three_months_ago": 6.82,
+          "one_year_ago": 6.7
+        },
+        "Vietnam": {
+          "current": 30005.0,
+          "one_month_ago": 28015.0,
+          "three_months_ago": 21955.0,
+          "one_year_ago": 18785.0
+        },
+        "Indonesia": {
+          "current": 25420.0,
+          "one_month_ago": 25420.0,
+          "three_months_ago": 21340.0,
+          "one_year_ago": 14270.0
+        },
+        "Thailand": {
+          "current": 42.19,
+          "one_month_ago": 39.14,
+          "three_months_ago": 34.94,
+          "one_year_ago": 31.49
+        },
+        "Malaysia": {
+          "current": 5.27,
+          "one_month_ago": 4.67,
+          "three_months_ago": 3.97,
+          "one_year_ago": 2.93
+        },
+        "Philippines": {
+          "current": 95.7,
+          "one_month_ago": 85.6,
+          "three_months_ago": 72.8,
+          "one_year_ago": 55.45
+        },
+        "Mexico": {
+          "current": 26.84,
+          "one_month_ago": 26.85,
+          "three_months_ago": 26.91,
+          "one_year_ago": 26.02
+        },
+        "Brazil": {
+          "current": 6.9,
+          "one_month_ago": 6.47,
+          "three_months_ago": 6.64,
+          "one_year_ago": 5.99
+        }
+      }
     }
   ],
-  "last_update": "2026-10-06T22:06:09.938580+08:00"
+  "last_update": "2026-10-07T22:23:12.271227+08:00"
 }
